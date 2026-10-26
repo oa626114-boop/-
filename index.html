@@ -416,7 +416,37 @@
       document.getElementById('year').textContent = new Date().getFullYear();
       setLanguage('ar');
     })();
-  </script>
+  </script><!-- OMAXSOLUTIONS API Connection -->
+<div id="omax-api-status"
+     style="padding:12px;margin:16px 0;border-radius:8px;
+            background:#f1f5f9;color:#334155;font-family:Arial,sans-serif">
+  جاري فحص اتصال خدمات OMAXSOLUTIONS...
+</div>
+
+<script>
+(async function () {
+  const status = document.getElementById("omax-api-status");
+  const API = "https://omax-api-105a.oa626114.workers.dev";
+
+  try {
+    const response = await fetch(API + "/api/health");
+    const data = await response.json();
+
+    if (response.ok && data.success === true) {
+      status.textContent = "API متصل — خدمات الشركة تعمل تقنيًا";
+      status.style.background = "#dcfce7";
+      status.style.color = "#166534";
+    } else {
+      throw new Error("API unavailable");
+    }
+  } catch (error) {
+    status.textContent =
+      "تعذر الاتصال بالخدمة. يرجى المحاولة لاحقًا.";
+    status.style.background = "#fee2e2";
+    status.style.color = "#991b1b";
+  }
+})();
+</script>
 </body>
 </html>
 
