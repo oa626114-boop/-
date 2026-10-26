@@ -1,133 +1,103 @@
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#071426">
-<meta name="description" content="OmaxSolutions LLC - حلول الأعمال والتقنية والمدفوعات والتجارة الدولية والتكامل الرقمي.">
-<title>OmaxSolutions LLC | حلول الأعمال والتقنية</title>
-<style>
-:root {
-  --navy:#071426;
-  --blue:#102b4e;
-  --gold:#e7bd70;
-  --white:#ffffff;
-  --muted:#b8c5d6;
-  --panel:#10223a;
-  --line:rgba(255,255,255,.12);
-}
-* {box-sizing:border-box}
-html {scroll-behavior:smooth;scroll-padding-top:85px}
-body {
-  margin:0;
-  font-family:Arial,Tahoma,sans-serif;
-  background:var(--navy);
-  color:var(--white);
-  line-height:1.8;
-}
-a {color:inherit;text-decoration:none}
-.container {width:min(1120px,92%);margin:auto}
-header {
-  position:sticky;top:0;z-index:20;
-  background:rgba(7,20,38,.96);
-  border-bottom:1px solid var(--line);
-  backdrop-filter:blur(12px);
-}
-.nav {
-  min-height:76px;display:flex;align-items:center;
-  justify-content:space-between;gap:20px;flex-wrap:wrap;
-  padding:12px 0;
-}
-.brand {font-size:21px;font-weight:800;letter-spacing:.3px}
-.brand span {color:var(--gold)}
-nav {display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-nav a {font-size:14px;color:var(--muted)}
-nav a:hover {color:var(--gold)}
-button,.btn {
-  border:0;border-radius:9px;padding:11px 17px;
-  font-weight:bold;cursor:pointer;font-size:14px;
-}
-.btn-primary {background:var(--gold);color:#172237}
-.btn-outline {border:1px solid var(--gold);color:var(--gold);background:transparent}
-.hero {
-  padding:90px 0 80px;
-  background:radial-gradient(ellipse at 85% 15%,#173c62 0,transparent 48%),
-             linear-gradient(140deg,#071426,#0b1c33);
-}
-.hero-grid {display:grid;grid-template-columns:1.25fr .75fr;gap:45px;align-items:center}
-.eyebrow {color:var(--gold);font-weight:bold;letter-spacing:1px}
-h1 {font-size:clamp(34px,5vw,58px);line-height:1.25;margin:15px 0}
-h1 span {color:var(--gold)}
-.lead {color:var(--muted);font-size:18px;max-width:650px}
-.actions {display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.hero-card {
-  padding:28px;border:1px solid rgba(231,189,112,.35);
-  border-radius:20px;background:rgba(16,34,58,.8);
-  box-shadow:0 22px 65px rgba(0,0,0,.2);
-}
-.hero-card .symbol {font-size:48px;color:var(--gold)}
-.hero-card h2 {margin:8px 0}
-.hero-card p {color:var(--muted)}
-.trust {display:flex;gap:12px;flex-wrap:wrap;margin-top:35px}
-.trust span {border:1px solid var(--line);padding:7px 12px;border-radius:30px;color:var(--muted);font-size:13px}
-section {padding:75px 0}
-.section-head {max-width:720px;margin-bottom:30px}
-.section-head h2 {font-size:clamp(27px,4vw,38px);margin:5px 0}
-.section-head p {color:var(--muted)}
-.grid {display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card {
-  background:var(--panel);border:1px solid var(--line);
-  padding:24px;border-radius:15px;transition:.2s;
-}
-.card:hover {transform:translateY(-4px);border-color:var(--gold)}
-.icon {font-size:30px}
-.card h3 {margin:10px 0}
-.card p {color:var(--muted);font-size:15px}
-.alt {background:#0b1a2d}
-.steps {display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.step-num {font-size:27px;font-weight:bold;color:var(--gold)}
-.about-box {
-  background:linear-gradient(120deg,#102b4e,#10223a);
-  padding:32px;border:1px solid var(--line);border-radius:18px;
-}
-.contact-grid {display:grid;grid-template-columns:1fr 1fr;gap:25px}
-.contact-info p {color:var(--muted)}
-form {display:grid;gap:12px}
-input,textarea,select {
-  width:100%;padding:13px;border-radius:8px;
-  border:1px solid var(--line);background:#071426;color:white;
-  font:inherit;
-}
-textarea {min-height:120px;resize:vertical}
-footer {border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-size:13px}
-.footer-inner {display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-[dir="ltr"] {text-align:left}
-[dir="ltr"] .hero-grid,[dir="ltr"] .contact-grid {direction:ltr}
-@media(max-width:800px) {
- .hero-grid,.contact-grid {grid-template-columns:1fr}
- .grid,.steps {grid-template-columns:repeat(2,1fr)}
- nav {gap:11px}
- .nav {justify-content:center}
-}
-@media(max-width:520px) {
- .grid,.steps {grid-template-columns:1fr}
- .hero {padding:60px 0}
- section {padding:55px 0}
- .brand {font-size:19px}
- nav {justify-content:center}
- nav a {font-size:12px}
-}
-</style>
-</head>
-<body>
-<header>
-  <div class="container nav">
-    <a class="brand" href="#home" dir="ltr">OMAX<span>SOLUTIONS</span> LLC</a>
-    <nav>
-      <a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
-      <a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
-      <a href="#about" data-ar="من نحن" data-en="About">من نحن</a>
-      <a href="#contact" data-ar="اتصل بنا" data-en="Contact">اتصل بنا</a>
-      <button class="btn-outline" id="langBtn" type="button">English</button>
-    </nav>
-  </div>
-</header>
+انتقل إلى المحتوى
+OM OMAXSOLUTIONS LLC  ☰
+الرئيسية خدماتنا من نحن آلية العمل اتصل بنا
+English ابدأ التواصل ↗
+
+حلول أعمال مترابطة
+نربط الأعمال بالتقنية والفرص العالمية
+تساعد OmaxSolutions LLC الشركات على تطوير عملياتها من خلال حلول تقنية عملية، وتكامل الأنظمة، ودعم التجارة الدولية، وتجارب رقمية أكثر سلاسة.
+اكتشف خدماتنا ↓ تواصل مع فريقنا
+تركيز على احتياجات الأعمال حلول مرنة وقابلة للتوسع
+نظرة عامة على الشركة جاهزون للتواصل
+OMX
+أعمال. تقنية. ترابط.
+شريكك لتنسيق الحلول وتطوير الفرص.
+مجالاتناالتقنية • التجارة • التكامل
+
+
+ما الذي نقدمه
+خدمات تدعم نمو أعمالك
+مجموعة من الخدمات المرنة المصممة لتلبية احتياجات الشركات وتسهيل التنسيق بين العمليات التجارية والحلول التقنية.
+
+⌘
+التكامل التقني وواجهات API
+المساعدة في ربط الأنظمة والخدمات الرقمية، وتنظيم تدفق البيانات، وتخطيط عمليات التكامل وفق متطلبات المشروع.
+↗
+حلول الدفع والأعمال الرقمية
+استكشاف متطلبات الدفع الرقمي وسير العمل التشغيلي، مع التركيز على وضوح الإجراءات والتوافق مع مزودي الخدمة المعتمدين.
+◇
+التجارة الدولية وتنسيق الأعمال
+دعم تنسيق المتطلبات التجارية، والتواصل بين الأطراف، وتجهيز معلومات المشاريع والفرص التجارية.
+◎
+المحافظ والأصول الرقمية
+معلومات ومساندة تقنية عامة حول المحافظ الرقمية، ومتطلبات التكامل، وممارسات الاستخدام الآمن.
+▤
+تطوير الحضور الرقمي
+مواقع وصفحات تعريفية متجاوبة تساعد الشركات على عرض خدماتها بوضوح عبر الهواتف وأجهزة الكمبيوتر.
+✧
+استشارات وتنسيق المشاريع
+تحديد الاحتياجات، وتنظيم نطاق العمل، وتنسيق الخطوات التالية مع الجهات المختصة ومزودي الخدمات.
+
+
+من نحن
+OMAXSOLUTIONS
+حلول عملية، تواصل واضح، ورؤية تضع احتياجات العميل في المقدمة.
+
+نهجنا
+نبني علاقات عمل على الوضوح والثقة
+نؤمن بأن التعاون الناجح يبدأ بفهم المتطلبات وتحديد نطاق العمل بوضوح، ثم تنسيق الحل المناسب مع مراعاة الأمان والامتثال والجدوى العملية.
+
+✓
+تواصل واضح
+نحرص على توضيح نطاق الخدمة والمتطلبات والخطوات المتوقعة منذ البداية.
+✓
+حلول تناسب الاحتياج
+نركز على فهم هدف المشروع قبل اقتراح مسار العمل.
+✓
+الاهتمام بالأمان والامتثال
+تُراجع الخدمات المالية أو المنظمة مع الجهات المرخصة والمختصة بحسب القوانين المعمول بها.
+
+
+آلية العمل
+خطوات واضحة من الفكرة إلى التنفيذ
+نبدأ بمحادثة قصيرة لفهم هدفك، ثم نحدد ما يلزم للانتقال إلى الخطوة التالية.
+
+01
+فهم المتطلبات
+نستمع إلى احتياجك ونحدد الهدف والنطاق والمعلومات الأساسية.
+02
+تقييم الخيارات
+نراجع المسارات الممكنة والمتطلبات التقنية أو التجارية ذات الصلة.
+03
+تنسيق الخطوات التالية
+نتفق على الخطوة العملية التالية والأطراف المسؤولة قبل بدء أي التزام.
+
+
+اتصل بنا
+أخبرنا عن مشروعك
+أرسل لنا نبذة عن احتياجك وسنساعدك على تحديد طريقة التواصل والخطوة التالية.
+
+
+تواصل مباشر
+للاستفسارات العامة والتعاون التجاري والمشاريع التقنية.
+◉واتساب / هاتف+90 552 315 6980
+⌖نطاق العملحلول تقنية وتعاون دولي
+
+اكتب رسالتك
+سيتم تجهيز الرسالة لفتحها عبر واتساب ومراجعتها قبل الإرسال.
+الاسم
+موضوع الاستفسار
+تفاصيل الرسالة
+متابعة عبر واتساب ↗
+لن تُرسل البيانات تلقائياً من الموقع؛ ستفتح واتساب لمراجعة الرسالة وإرسالها بنفسك.
+
+
+هل لديك فكرة أو فرصة تعاون؟
+ابدأ بمحادثة واضحة حول احتياجك وأهدافك.
+تواصل معنا الآن ↗
+
+
+OMAXSOLUTIONS LLC
+© OmaxSolutions LLC. جميع الحقوق محفوظة.
+العودة إلى الأعلى ↑
+ملاحظة: المعلومات الواردة في هذا الموقع تعريفية عامة ولا تمثل عرضاً لخدمات مالية أو مصرفية مرخصة أو ضماناً لتنفيذ أي معاملة. تخضع أي خدمة منظمة للقوانين المعمول بها وموافقة الجهات المرخصة ذات الصلة.
