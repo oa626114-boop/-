@@ -1,105 +1,422 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head> إلى المحتوى
-OM OMAXSOLUTIONS LLC  ☰
-الرئيسية خدماتنا من نحن آلية العمل اتصل بنا
-English ابدأ التواصل ↗
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071426">
+  <meta name="description" content="OmaxSolutions LLC — حلول الأعمال والتكامل التقني والتجارة الدولية وحلول الدفع الرقمية.">
+  <meta property="og:title" content="OmaxSolutions LLC | Business & Technology Solutions">
+  <meta property="og:description" content="Connecting business, technology and international trade.">
+  <meta property="og:type" content="website">
+  <title>OmaxSolutions LLC | حلول الأعمال والتقنية</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg:#071426;
+      --bg-soft:#0a1a2f;
+      --panel:#10233c;
+      --panel-light:#142b48;
+      --gold:#e8c27a;
+      --gold-bright:#f4d99d;
+      --text:#f7f9fc;
+      --muted:#b6c4d7;
+      --line:rgba(226,237,250,.13);
+      --shadow:0 24px 70px rgba(0,0,0,.24);
+      --radius:20px;
+      --content:1160px;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:100px; }
+    body {
+      margin:0; font-family:Arial,Tahoma,sans-serif; color:var(--text);
+      background:var(--bg); line-height:1.75; -webkit-font-smoothing:antialiased;
+    }
+    body::selection { background:var(--gold); color:var(--bg); }
+    a { color:inherit; text-decoration:none; }
+    button,input,textarea { font:inherit; }
+    button,a { -webkit-tap-highlight-color:transparent; }
+    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible {
+      outline:2px solid var(--gold); outline-offset:4px;
+    }
+    .container { width:min(var(--content), calc(100% - 40px)); margin-inline:auto; }
+    .skip-link { position:absolute; top:-60px; inset-inline-start:16px; background:var(--gold); color:#101827; padding:8px 12px; z-index:100; border-radius:8px; }
+    .skip-link:focus { top:12px; }
+    .site-header {
+      position:sticky; top:0; z-index:50;
+      background:rgba(7,20,38,.92); border-bottom:1px solid var(--line);
+      backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    }
+    .nav-wrap { min-height:78px; display:flex; align-items:center; justify-content:space-between; gap:22px; padding-block:12px; }
+    .brand { display:inline-flex; align-items:center; gap:10px; font-size:clamp(17px,2vw,22px); font-weight:900; letter-spacing:.4px; white-space:nowrap; }
+    .brand-mark {
+      width:38px; height:38px; display:grid; place-items:center; border:1px solid rgba(232,194,122,.55);
+      color:var(--gold); border-radius:12px; font-size:15px; letter-spacing:-1px;
+      background:linear-gradient(145deg,rgba(232,194,122,.13),rgba(232,194,122,.02));
+    }
+    .brand-name span { color:var(--gold); }
+    .nav-right { display:flex; align-items:center; gap:22px; }
+    .nav-links { display:flex; align-items:center; gap:20px; }
+    .nav-links a { color:var(--muted); font-size:14px; transition:color .2s; }
+    .nav-links a:hover { color:var(--gold-bright); }
+    .nav-actions { display:flex; align-items:center; gap:10px; }
+    .menu-toggle { display:none; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:9px;
+      border:1px solid transparent; border-radius:11px; padding:12px 18px;
+      font-size:14px; font-weight:800; cursor:pointer; transition:transform .2s,background .2s,border-color .2s;
+      min-height:46px;
+    }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { color:#182236; background:linear-gradient(135deg,var(--gold-bright),var(--gold)); box-shadow:0 8px 24px rgba(232,194,122,.12); }
+    .btn-primary:hover { background:#f7dfa9; }
+    .btn-outline { border-color:rgba(232,194,122,.6); color:var(--gold-bright); background:rgba(232,194,122,.03); }
+    .btn-outline:hover { background:rgba(232,194,122,.1); }
+    .hero {
+      position:relative; overflow:hidden; padding:clamp(70px,9vw,120px) 0 76px;
+      background:radial-gradient(ellipse at 12% 12%,rgba(32,83,130,.45),transparent 38%),
+                 radial-gradient(ellipse at 88% 40%,rgba(232,194,122,.10),transparent 32%),
+                 linear-gradient(145deg,#071426 0%,#0a1c33 65%,#0b2038 100%);
+    }
+    .hero::after { content:""; position:absolute; width:390px; height:390px; border:1px solid rgba(232,194,122,.12); border-radius:50%; inset-inline-end:-180px; bottom:-260px; box-shadow:0 0 0 35px rgba(232,194,122,.025),0 0 0 75px rgba(232,194,122,.02); pointer-events:none; }
+    .hero-grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr); align-items:center; gap:clamp(35px,6vw,80px); position:relative; z-index:1; }
+    .eyebrow { display:inline-flex; align-items:center; gap:10px; color:var(--gold); font-size:12px; font-weight:900; letter-spacing:1.8px; text-transform:uppercase; }
+    .eyebrow::before { content:""; width:28px; height:1px; background:var(--gold); }
+    h1 { font-size:clamp(37px,5.3vw,66px); line-height:1.15; letter-spacing:-1.5px; margin:20px 0; }
+    h1 span,.gold { color:var(--gold); }
+    .hero-copy { color:var(--muted); font-size:clamp(16px,1.7vw,19px); max-width:650px; margin:0; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; }
+    .hero-meta { display:flex; gap:18px; flex-wrap:wrap; margin-top:35px; color:var(--muted); font-size:12px; }
+    .hero-meta span { display:inline-flex; align-items:center; gap:8px; }
+    .hero-meta i { width:6px; height:6px; border-radius:50%; background:var(--gold); display:inline-block; }
+    .visual-card {
+      padding:30px; border:1px solid rgba(232,194,122,.27); border-radius:26px;
+      background:linear-gradient(145deg,rgba(20,43,72,.92),rgba(10,26,47,.92)); box-shadow:var(--shadow);
+      position:relative; overflow:hidden;
+    }
+    .visual-card::before { content:""; position:absolute; width:190px; height:190px; border:1px solid rgba(232,194,122,.16); border-radius:50%; top:-105px; inset-inline-end:-80px; box-shadow:0 0 0 22px rgba(232,194,122,.035),0 0 0 46px rgba(232,194,122,.025); }
+    .visual-top { display:flex; justify-content:space-between; align-items:center; gap:12px; position:relative; }
+    .visual-label { color:var(--muted); font-size:12px; letter-spacing:1.2px; }
+    .status-dot { display:inline-flex; align-items:center; gap:7px; color:#c7e7d5; font-size:11px; }
+    .status-dot::before { content:""; width:7px; height:7px; border-radius:50%; background:#73d7a1; }
+    .monogram { display:grid; place-items:center; width:94px; height:94px; margin:32px auto 24px; border-radius:28px; border:1px solid rgba(232,194,122,.5); color:var(--gold); font-size:32px; font-weight:900; letter-spacing:-3px; background:linear-gradient(145deg,rgba(232,194,122,.16),rgba(232,194,122,.025)); box-shadow:inset 0 0 35px rgba(232,194,122,.04); }
+    .visual-card h2 { font-size:22px; text-align:center; margin:0 0 8px; }
+    .visual-card > p { color:var(--muted); text-align:center; font-size:14px; margin:0; }
+    .visual-divider { height:1px; background:var(--line); margin:25px 0 18px; }
+    .visual-foot { display:flex; justify-content:space-between; gap:12px; color:var(--muted); font-size:12px; }
+    .visual-foot strong { color:var(--gold-bright); font-weight:700; }
+    .section { padding:clamp(62px,8vw,96px) 0; }
+    .section-alt { background:var(--bg-soft); border-block:1px solid rgba(255,255,255,.035); }
+    .section-heading { max-width:730px; margin-bottom:34px; }
+    .section-heading h2 { font-size:clamp(28px,4vw,42px); line-height:1.2; margin:12px 0; }
+    .section-heading p { color:var(--muted); margin:0; font-size:16px; }
+    .service-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .service-card {
+      padding:26px; border:1px solid var(--line); border-radius:var(--radius);
+      background:linear-gradient(145deg,rgba(20,43,72,.78),rgba(16,35,60,.78));
+      transition:transform .25s,border-color .25s,background .25s; min-height:235px;
+    }
+    .service-card:hover { transform:translateY(-5px); border-color:rgba(232,194,122,.5); background:var(--panel-light); }
+    .service-icon { width:50px; height:50px; display:grid; place-items:center; border-radius:15px; border:1px solid rgba(232,194,122,.25); color:var(--gold); background:rgba(232,194,122,.07); font-size:24px; }
+    .service-card h3 { font-size:18px; margin:18px 0 8px; }
+    .service-card p { font-size:14px; color:var(--muted); margin:0; }
+    .about-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:50px; align-items:center; }
+    .about-panel { padding:30px; border-radius:24px; border:1px solid rgba(232,194,122,.25); background:linear-gradient(145deg,#102b4e,#0b1b30); }
+    .about-panel .big-mark { font-size:clamp(34px,5vw,54px); font-weight:900; line-height:1.2; letter-spacing:-2px; }
+    .about-panel .big-mark span { color:var(--gold); }
+    .about-panel p { color:var(--muted); margin-bottom:0; }
+    .values { display:grid; gap:18px; margin-top:25px; }
+    .value { display:flex; gap:14px; align-items:flex-start; }
+    .value-check { flex:0 0 28px; height:28px; display:grid; place-items:center; border-radius:50%; color:var(--gold); border:1px solid rgba(232,194,122,.4); font-size:14px; }
+    .value h3 { margin:0 0 3px; font-size:16px; }
+    .value p { margin:0; color:var(--muted); font-size:14px; }
+    .process-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; counter-reset:steps; }
+    .process-card { padding:24px; border:1px solid var(--line); border-radius:16px; background:rgba(16,35,60,.65); }
+    .process-num { color:var(--gold); font-size:28px; font-weight:900; }
+    .process-card h3 { margin:8px 0; font-size:17px; }
+    .process-card p { color:var(--muted); font-size:14px; margin:0; }
+    .contact-shell { display:grid; grid-template-columns:.85fr 1.15fr; gap:28px; align-items:start; }
+    .contact-info,.contact-form { border:1px solid var(--line); border-radius:22px; padding:28px; background:rgba(16,35,60,.7); }
+    .contact-info h3,.contact-form h3 { font-size:21px; margin:0 0 10px; }
+    .contact-info > p,.contact-form > p { color:var(--muted); font-size:14px; margin-top:0; }
+    .contact-link { display:flex; gap:12px; align-items:center; padding:14px 0; border-bottom:1px solid var(--line); }
+    .contact-link:last-child { border-bottom:0; }
+    .contact-symbol { display:grid; place-items:center; flex:0 0 40px; height:40px; border-radius:12px; color:var(--gold); border:1px solid rgba(232,194,122,.22); background:rgba(232,194,122,.06); }
+    .contact-link small { display:block; color:var(--muted); font-size:12px; }
+    .contact-link strong { font-size:14px; overflow-wrap:anywhere; }
+    .field { display:grid; gap:6px; margin-bottom:13px; }
+    .field label { color:#e4ebf5; font-size:13px; font-weight:700; }
+    .field input,.field textarea {
+      width:100%; border:1px solid rgba(226,237,250,.16); border-radius:10px; background:#08172a;
+      color:var(--text); padding:13px 14px; min-height:47px; outline:none;
+    }
+    .field input:focus,.field textarea:focus { border-color:var(--gold); }
+    .field textarea { min-height:120px; resize:vertical; }
+    .form-note { color:var(--muted); font-size:11px; margin:10px 0 0; }
+    .cta-band { padding:32px; border-radius:22px; border:1px solid rgba(232,194,122,.27); background:linear-gradient(110deg,rgba(232,194,122,.11),rgba(16,43,78,.75)); display:flex; justify-content:space-between; align-items:center; gap:24px; }
+    .cta-band h2 { margin:0 0 5px; font-size:clamp(22px,3vw,30px); }
+    .cta-band p { color:var(--muted); margin:0; font-size:14px; }
+    footer { padding:26px 0; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+    .footer-inner { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+    .footer-brand { color:var(--text); font-weight:800; }
+    .footer-brand span { color:var(--gold); }
+    .legal-note { color:#91a3ba; font-size:11px; max-width:780px; margin:18px 0 0; }
+    [dir="ltr"] { text-align:left; }
+    [dir="ltr"] .hero-grid,[dir="ltr"] .about-grid,[dir="ltr"] .contact-shell { direction:ltr; }
+    [dir="ltr"] .hero-meta,[dir="ltr"] .hero-actions { justify-content:flex-start; }
+    [dir="ltr"] .eyebrow { letter-spacing:1.1px; }
+    @media (max-width:900px) {
+      .nav-wrap { flex-wrap:wrap; }
+      .nav-right { gap:14px; }
+      .nav-links { gap:13px; }
+      .hero-grid { grid-template-columns:1fr  minmax(250px,.7fr); gap:28px; }
+      .service-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .about-grid { gap:28px; }
+    }
+    @media (max-width:700px) {
+      .container { width:min(var(--content),calc(100% - 30px)); }
+      .nav-wrap { min-height:70px; justify-content:space-between; }
+      .nav-right { width:100%; display:none; align-items:stretch; flex-direction:column; padding:8px 0 12px; }
+      .nav-right.open { display:flex; }
+      .nav-links { flex-direction:column; align-items:stretch; gap:0; }
+      .nav-links a { padding:10px 2px; border-bottom:1px solid var(--line); font-size:14px; }
+      .nav-actions { justify-content:flex-start; }
+      .menu-toggle { display:inline-flex; width:44px; height:44px; padding:0; align-items:center; justify-content:center; border:1px solid var(--line); background:transparent; color:var(--text); border-radius:10px; font-size:22px; }
+      .hero { padding:60px 0 55px; }
+      .hero-grid,.about-grid,.contact-shell { grid-template-columns:1fr; }
+      .hero-grid { gap:34px; }
+      .visual-card { max-width:460px; width:100%; margin-inline:auto; }
+      .service-grid,.process-grid { grid-template-columns:1fr; }
+      .service-card { min-height:auto; }
+      .cta-band { align-items:flex-start; flex-direction:column; padding:25px; }
+      .section { padding:58px 0; }
+      .about-panel,.contact-info,.contact-form { padding:23px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { transition:none !important; animation:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-ar="انتقل إلى المحتوى" data-en="Skip to content">انتقل إلى المحتوى</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" dir="ltr" aria-label="OmaxSolutions LLC home">
+        <span class="brand-mark">OM</span>
+        <span class="brand-name">OMAX<span>SOLUTIONS</span> LLC</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+      <div class="nav-right" id="navRight">
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+          <a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
+          <a href="#about" data-ar="من نحن" data-en="About us">من نحن</a>
+          <a href="#approach" data-ar="آلية العمل" data-en="Our approach">آلية العمل</a>
+          <a href="#contact" data-ar="اتصل بنا" data-en="Contact">اتصل بنا</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="btn btn-outline" id="langBtn" type="button" aria-label="Switch language">English</button>
+          <a class="btn btn-primary" href="#contact" data-ar="ابدأ التواصل ↗" data-en="Get in touch ↗">ابدأ التواصل ↗</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-حلول أعمال مترابطة
-نربط الأعمال بالتقنية والفرص العالمية
-تساعد OmaxSolutions LLC الشركات على تطوير عملياتها من خلال حلول تقنية عملية، وتكامل الأنظمة، ودعم التجارة الدولية، وتجارب رقمية أكثر سلاسة.
-اكتشف خدماتنا ↓ تواصل مع فريقنا
-تركيز على احتياجات الأعمال حلول مرنة وقابلة للتوسع
-نظرة عامة على الشركة جاهزون للتواصل
-OMX
-أعمال. تقنية. ترابط.
-شريكك لتنسيق الحلول وتطوير الفرص.
-مجالاتناالتقنية • التجارة • التكامل
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow" data-ar="حلول أعمال مترابطة" data-en="Connected business solutions">حلول أعمال مترابطة</div>
+          <h1 data-ar="نربط الأعمال <span>بالتقنية</span> والفرص العالمية" data-en="Connecting business with <span>technology</span> and global opportunity">نربط الأعمال <span>بالتقنية</span> والفرص العالمية</h1>
+          <p class="hero-copy" data-ar="تساعد OmaxSolutions LLC الشركات على تطوير عملياتها من خلال حلول تقنية عملية، وتكامل الأنظمة، ودعم التجارة الدولية، وتجارب رقمية أكثر سلاسة." data-en="OmaxSolutions LLC helps businesses improve operations through practical technology solutions, system integration, international trade support, and smoother digital experiences.">تساعد OmaxSolutions LLC الشركات على تطوير عملياتها من خلال حلول تقنية عملية، وتكامل الأنظمة، ودعم التجارة الدولية، وتجارب رقمية أكثر سلاسة.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#services" data-ar="اكتشف خدماتنا ↓" data-en="Explore our services ↓">اكتشف خدماتنا ↓</a>
+            <a class="btn btn-outline" href="#contact" data-ar="تواصل مع فريقنا" data-en="Talk to our team">تواصل مع فريقنا</a>
+          </div>
+          <div class="hero-meta">
+            <span><i></i><b data-ar="تركيز على احتياجات الأعمال" data-en="Business-focused">تركيز على احتياجات الأعمال</b></span>
+            <span><i></i><b data-ar="حلول مرنة وقابلة للتوسع" data-en="Flexible and scalable">حلول مرنة وقابلة للتوسع</b></span>
+          </div>
+        </div>
+        <aside class="visual-card" aria-label="OmaxSolutions overview">
+          <div class="visual-top">
+            <span class="visual-label" data-ar="نظرة عامة على الشركة" data-en="COMPANY OVERVIEW">نظرة عامة على الشركة</span>
+            <span class="status-dot" data-ar="جاهزون للتواصل" data-en="Open for enquiries">جاهزون للتواصل</span>
+          </div>
+          <div class="monogram" aria-hidden="true">OMX</div>
+          <h2 data-ar="أعمال. تقنية. ترابط." data-en="Business. Technology. Connection.">أعمال. تقنية. ترابط.</h2>
+          <p data-ar="شريكك لتنسيق الحلول وتطوير الفرص." data-en="A partner for coordinated solutions and new opportunities.">شريكك لتنسيق الحلول وتطوير الفرص.</p>
+          <div class="visual-divider"></div>
+          <div class="visual-foot"><span data-ar="مجالاتنا" data-en="Our focus">مجالاتنا</span><strong data-ar="التقنية • التجارة • التكامل" data-en="Technology • Trade • Integration">التقنية • التجارة • التكامل</strong></div>
+        </aside>
+      </div>
+    </section>
 
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow" data-ar="ما الذي نقدمه" data-en="WHAT WE DO">ما الذي نقدمه</div>
+          <h2 data-ar="خدمات تدعم نمو أعمالك" data-en="Services designed to support your growth">خدمات تدعم نمو أعمالك</h2>
+          <p data-ar="مجموعة من الخدمات المرنة المصممة لتلبية احتياجات الشركات وتسهيل التنسيق بين العمليات التجارية والحلول التقنية." data-en="Flexible services designed around business needs, helping align commercial operations with practical technology solutions.">مجموعة من الخدمات المرنة المصممة لتلبية احتياجات الشركات وتسهيل التنسيق بين العمليات التجارية والحلول التقنية.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card"><div class="service-icon" aria-hidden="true">⌘</div><h3 data-ar="التكامل التقني وواجهات API" data-en="Technology & API Integration">التكامل التقني وواجهات API</h3><p data-ar="المساعدة في ربط الأنظمة والخدمات الرقمية، وتنظيم تدفق البيانات، وتخطيط عمليات التكامل وفق متطلبات المشروع." data-en="Support for connecting systems and digital services, organizing data flows, and planning integrations around project requirements.">المساعدة في ربط الأنظمة والخدمات الرقمية، وتنظيم تدفق البيانات، وتخطيط عمليات التكامل وفق متطلبات المشروع.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">↗</div><h3 data-ar="حلول الدفع والأعمال الرقمية" data-en="Digital Payment & Business Solutions">حلول الدفع والأعمال الرقمية</h3><p data-ar="استكشاف متطلبات الدفع الرقمي وسير العمل التشغيلي، مع التركيز على وضوح الإجراءات والتوافق مع مزودي الخدمة المعتمدين." data-en="Explore digital payment requirements and operational workflows, with an emphasis on clear processes and working with authorized providers.">استكشاف متطلبات الدفع الرقمي وسير العمل التشغيلي، مع التركيز على وضوح الإجراءات والتوافق مع مزودي الخدمة المعتمدين.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">◇</div><h3 data-ar="التجارة الدولية وتنسيق الأعمال" data-en="International Trade & Business">التجارة الدولية وتنسيق الأعمال</h3><p data-ar="دعم تنسيق المتطلبات التجارية، والتواصل بين الأطراف، وتجهيز معلومات المشاريع والفرص التجارية." data-en="Support commercial coordination, communication between counterparties, and preparation of project and opportunity information.">دعم تنسيق المتطلبات التجارية، والتواصل بين الأطراف، وتجهيز معلومات المشاريع والفرص التجارية.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">◎</div><h3 data-ar="المحافظ والأصول الرقمية" data-en="Digital Wallets & Assets">المحافظ والأصول الرقمية</h3><p data-ar="معلومات ومساندة تقنية عامة حول المحافظ الرقمية، ومتطلبات التكامل، وممارسات الاستخدام الآمن." data-en="General technical information on digital wallets, integration requirements, and safer usage practices.">معلومات ومساندة تقنية عامة حول المحافظ الرقمية، ومتطلبات التكامل، وممارسات الاستخدام الآمن.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">▤</div><h3 data-ar="تطوير الحضور الرقمي" data-en="Digital Presence">تطوير الحضور الرقمي</h3><p data-ar="مواقع وصفحات تعريفية متجاوبة تساعد الشركات على عرض خدماتها بوضوح عبر الهواتف وأجهزة الكمبيوتر." data-en="Responsive websites and company profiles that present services clearly across mobile devices and desktop computers.">مواقع وصفحات تعريفية متجاوبة تساعد الشركات على عرض خدماتها بوضوح عبر الهواتف وأجهزة الكمبيوتر.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">✧</div><h3 data-ar="استشارات وتنسيق المشاريع" data-en="Project Advisory & Coordination">استشارات وتنسيق المشاريع</h3><p data-ar="تحديد الاحتياجات، وتنظيم نطاق العمل، وتنسيق الخطوات التالية مع الجهات المختصة ومزودي الخدمات." data-en="Clarify needs, organize project scope, and coordinate next steps with relevant specialists and service providers.">تحديد الاحتياجات، وتنظيم نطاق العمل، وتنسيق الخطوات التالية مع الجهات المختصة ومزودي الخدمات.</p></article>
+        </div>
+      </div>
+    </section>
 
-ما الذي نقدمه
-خدمات تدعم نمو أعمالك
-مجموعة من الخدمات المرنة المصممة لتلبية احتياجات الشركات وتسهيل التنسيق بين العمليات التجارية والحلول التقنية.
+    <section class="section section-alt" id="about">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <div class="eyebrow" data-ar="من نحن" data-en="ABOUT OMAXSOLUTIONS">من نحن</div>
+          <div class="big-mark" dir="ltr">OMAX<span>SOLUTIONS</span></div>
+          <p data-ar="حلول عملية، تواصل واضح، ورؤية تضع احتياجات العميل في المقدمة." data-en="Practical solutions, clear communication, and a vision that puts client needs first.">حلول عملية، تواصل واضح، ورؤية تضع احتياجات العميل في المقدمة.</p>
+        </div>
+        <div>
+          <div class="section-heading">
+            <div class="eyebrow" data-ar="نهجنا" data-en="OUR APPROACH">نهجنا</div>
+            <h2 data-ar="نبني علاقات عمل على الوضوح والثقة" data-en="Building business relationships through clarity and trust">نبني علاقات عمل على الوضوح والثقة</h2>
+            <p data-ar="نؤمن بأن التعاون الناجح يبدأ بفهم المتطلبات وتحديد نطاق العمل بوضوح، ثم تنسيق الحل المناسب مع مراعاة الأمان والامتثال والجدوى العملية." data-en="We believe successful collaboration starts with understanding requirements and defining scope clearly, then coordinating a suitable solution with attention to security, compliance, and practicality.">نؤمن بأن التعاون الناجح يبدأ بفهم المتطلبات وتحديد نطاق العمل بوضوح، ثم تنسيق الحل المناسب مع مراعاة الأمان والامتثال والجدوى العملية.</p>
+          </div>
+          <div class="values">
+            <div class="value"><span class="value-check">✓</span><div><h3 data-ar="تواصل واضح" data-en="Clear communication">تواصل واضح</h3><p data-ar="نحرص على توضيح نطاق الخدمة والمتطلبات والخطوات المتوقعة منذ البداية." data-en="We aim to clarify service scope, requirements, and expected next steps from the outset.">نحرص على توضيح نطاق الخدمة والمتطلبات والخطوات المتوقعة منذ البداية.</p></div></div>
+            <div class="value"><span class="value-check">✓</span><div><h3 data-ar="حلول تناسب الاحتياج" data-en="Solutions tailored to needs">حلول تناسب الاحتياج</h3><p data-ar="نركز على فهم هدف المشروع قبل اقتراح مسار العمل." data-en="We focus on understanding the project goal before proposing a path forward.">نركز على فهم هدف المشروع قبل اقتراح مسار العمل.</p></div></div>
+            <div class="value"><span class="value-check">✓</span><div><h3 data-ar="الاهتمام بالأمان والامتثال" data-en="Security and compliance awareness">الاهتمام بالأمان والامتثال</h3><p data-ar="تُراجع الخدمات المالية أو المنظمة مع الجهات المرخصة والمختصة بحسب القوانين المعمول بها." data-en="Regulated or financial services should be reviewed with appropriately licensed providers and relevant specialists under applicable laws.">تُراجع الخدمات المالية أو المنظمة مع الجهات المرخصة والمختصة بحسب القوانين المعمول بها.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-⌘
-التكامل التقني وواجهات API
-المساعدة في ربط الأنظمة والخدمات الرقمية، وتنظيم تدفق البيانات، وتخطيط عمليات التكامل وفق متطلبات المشروع.
-↗
-حلول الدفع والأعمال الرقمية
-استكشاف متطلبات الدفع الرقمي وسير العمل التشغيلي، مع التركيز على وضوح الإجراءات والتوافق مع مزودي الخدمة المعتمدين.
-◇
-التجارة الدولية وتنسيق الأعمال
-دعم تنسيق المتطلبات التجارية، والتواصل بين الأطراف، وتجهيز معلومات المشاريع والفرص التجارية.
-◎
-المحافظ والأصول الرقمية
-معلومات ومساندة تقنية عامة حول المحافظ الرقمية، ومتطلبات التكامل، وممارسات الاستخدام الآمن.
-▤
-تطوير الحضور الرقمي
-مواقع وصفحات تعريفية متجاوبة تساعد الشركات على عرض خدماتها بوضوح عبر الهواتف وأجهزة الكمبيوتر.
-✧
-استشارات وتنسيق المشاريع
-تحديد الاحتياجات، وتنظيم نطاق العمل، وتنسيق الخطوات التالية مع الجهات المختصة ومزودي الخدمات.
+    <section class="section" id="approach">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow" data-ar="آلية العمل" data-en="HOW WE WORK">آلية العمل</div>
+          <h2 data-ar="خطوات واضحة من الفكرة إلى التنفيذ" data-en="A clear path from idea to action">خطوات واضحة من الفكرة إلى التنفيذ</h2>
+          <p data-ar="نبدأ بمحادثة قصيرة لفهم هدفك، ثم نحدد ما يلزم للانتقال إلى الخطوة التالية." data-en="We start with a conversation to understand your goal, then identify what is needed for the next step.">نبدأ بمحادثة قصيرة لفهم هدفك، ثم نحدد ما يلزم للانتقال إلى الخطوة التالية.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-card"><div class="process-num">01</div><h3 data-ar="فهم المتطلبات" data-en="Understand requirements">فهم المتطلبات</h3><p data-ar="نستمع إلى احتياجك ونحدد الهدف والنطاق والمعلومات الأساسية." data-en="We listen to your needs and identify the goal, scope, and essential information.">نستمع إلى احتياجك ونحدد الهدف والنطاق والمعلومات الأساسية.</p></article>
+          <article class="process-card"><div class="process-num">02</div><h3 data-ar="تقييم الخيارات" data-en="Review options">تقييم الخيارات</h3><p data-ar="نراجع المسارات الممكنة والمتطلبات التقنية أو التجارية ذات الصلة." data-en="We review possible approaches and relevant technical or commercial requirements.">نراجع المسارات الممكنة والمتطلبات التقنية أو التجارية ذات الصلة.</p></article>
+          <article class="process-card"><div class="process-num">03</div><h3 data-ar="تنسيق الخطوات التالية" data-en="Coordinate next steps">تنسيق الخطوات التالية</h3><p data-ar="نتفق على الخطوة العملية التالية والأطراف المسؤولة قبل بدء أي التزام." data-en="We agree on practical next steps and responsible parties before any commitment begins.">نتفق على الخطوة العملية التالية والأطراف المسؤولة قبل بدء أي التزام.</p></article>
+        </div>
+      </div>
+    </section>
 
+    <section class="section section-alt" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow" data-ar="اتصل بنا" data-en="CONTACT US">اتصل بنا</div>
+          <h2 data-ar="أخبرنا عن مشروعك" data-en="Tell us about your project">أخبرنا عن مشروعك</h2>
+          <p data-ar="أرسل لنا نبذة عن احتياجك وسنساعدك على تحديد طريقة التواصل والخطوة التالية." data-en="Share a short description of your needs and we’ll help identify the right next step.">أرسل لنا نبذة عن احتياجك وسنساعدك على تحديد طريقة التواصل والخطوة التالية.</p>
+        </div>
+        <div class="contact-shell">
+          <div class="contact-info">
+            <h3 data-ar="تواصل مباشر" data-en="Direct contact">تواصل مباشر</h3>
+            <p data-ar="للاستفسارات العامة والتعاون التجاري والمشاريع التقنية." data-en="For general enquiries, business collaboration, and technology projects.">للاستفسارات العامة والتعاون التجاري والمشاريع التقنية.</p>
+            <a class="contact-link" href="https://wa.me/905523156980" target="_blank" rel="noopener noreferrer">
+              <span class="contact-symbol" aria-hidden="true">◉</span><span><small data-ar="واتساب / هاتف" data-en="WhatsApp / Phone">واتساب / هاتف</small><strong dir="ltr">+90 552 315 6980</strong></span>
+            </a>
+            <div class="contact-link">
+              <span class="contact-symbol" aria-hidden="true">⌖</span><span><small data-ar="نطاق العمل" data-en="Business focus">نطاق العمل</small><strong data-ar="حلول تقنية وتعاون دولي" data-en="Technology & international collaboration">حلول تقنية وتعاون دولي</strong></span>
+            </div>
+          </div>
+          <div class="contact-form">
+            <h3 data-ar="اكتب رسالتك" data-en="Write your message">اكتب رسالتك</h3>
+            <p data-ar="سيتم تجهيز الرسالة لفتحها عبر واتساب ومراجعتها قبل الإرسال." data-en="Your message will be prepared in WhatsApp for you to review before sending.">سيتم تجهيز الرسالة لفتحها عبر واتساب ومراجعتها قبل الإرسال.</p>
+            <form id="contactForm">
+              <div class="field"><label for="name" data-ar="الاسم" data-en="Name">الاسم</label><input id="name" name="name" autocomplete="name" required maxlength="100" placeholder="الاسم الكامل" data-placeholder-ar="الاسم الكامل" data-placeholder-en="Your full name"></div>
+              <div class="field"><label for="topic" data-ar="موضوع الاستفسار" data-en="Enquiry topic">موضوع الاستفسار</label><input id="topic" name="topic" required maxlength="150" placeholder="كيف يمكننا مساعدتك؟" data-placeholder-ar="كيف يمكننا مساعدتك؟" data-placeholder-en="How can we help?"></div>
+              <div class="field"><label for="message" data-ar="تفاصيل الرسالة" data-en="Message details">تفاصيل الرسالة</label><textarea id="message" name="message" required maxlength="2000" placeholder="اكتب تفاصيل طلبك هنا..." data-placeholder-ar="اكتب تفاصيل طلبك هنا..." data-placeholder-en="Write a few details about your request..."></textarea></div>
+              <button class="btn btn-primary" type="submit" data-ar="متابعة عبر واتساب ↗" data-en="Continue to WhatsApp ↗">متابعة عبر واتساب ↗</button>
+              <p class="form-note" data-ar="لن تُرسل البيانات تلقائياً من الموقع؛ ستفتح واتساب لمراجعة الرسالة وإرسالها بنفسك." data-en="The website does not send your data automatically; WhatsApp opens so you can review and send the message yourself.">لن تُرسل البيانات تلقائياً من الموقع؛ ستفتح واتساب لمراجعة الرسالة وإرسالها بنفسك.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
-من نحن
-OMAXSOLUTIONS
-حلول عملية، تواصل واضح، ورؤية تضع احتياجات العميل في المقدمة.
+    <section class="section">
+      <div class="container">
+        <div class="cta-band">
+          <div><h2 data-ar="هل لديك فكرة أو فرصة تعاون؟" data-en="Have an idea or collaboration opportunity?">هل لديك فكرة أو فرصة تعاون؟</h2><p data-ar="ابدأ بمحادثة واضحة حول احتياجك وأهدافك." data-en="Start with a clear conversation about your needs and goals.">ابدأ بمحادثة واضحة حول احتياجك وأهدافك.</p></div>
+          <a class="btn btn-primary" href="https://wa.me/905523156980" target="_blank" rel="noopener noreferrer" data-ar="تواصل معنا الآن ↗" data-en="Contact us now ↗">تواصل معنا الآن ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-نهجنا
-نبني علاقات عمل على الوضوح والثقة
-نؤمن بأن التعاون الناجح يبدأ بفهم المتطلبات وتحديد نطاق العمل بوضوح، ثم تنسيق الحل المناسب مع مراعاة الأمان والامتثال والجدوى العملية.
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand" dir="ltr">OMAX<span>SOLUTIONS</span> LLC</div>
+        <div>© <span id="year"></span> OmaxSolutions LLC. <span data-ar="جميع الحقوق محفوظة." data-en="All rights reserved.">جميع الحقوق محفوظة.</span></div>
+        <a href="#home" data-ar="العودة إلى الأعلى ↑" data-en="Back to top ↑">العودة إلى الأعلى ↑</a>
+      </div>
+      <p class="legal-note" data-ar="ملاحظة: المعلومات الواردة في هذا الموقع تعريفية عامة ولا تمثل عرضاً لخدمات مالية أو مصرفية مرخصة أو ضماناً لتنفيذ أي معاملة. تخضع أي خدمة منظمة للقوانين المعمول بها وموافقة الجهات المرخصة ذات الصلة." data-en="Notice: Information on this website is general and does not constitute an offer of licensed financial or banking services or a guarantee that any transaction will be executed. Regulated services are subject to applicable laws and approval by relevant licensed providers.">ملاحظة: المعلومات الواردة في هذا الموقع تعريفية عامة ولا تمثل عرضاً لخدمات مالية أو مصرفية مرخصة أو ضماناً لتنفيذ أي معاملة. تخضع أي خدمة منظمة للقوانين المعمول بها وموافقة الجهات المرخصة ذات الصلة.</p>
+    </div>
+  </footer>
 
-✓
-تواصل واضح
-نحرص على توضيح نطاق الخدمة والمتطلبات والخطوات المتوقعة منذ البداية.
-✓
-حلول تناسب الاحتياج
-نركز على فهم هدف المشروع قبل اقتراح مسار العمل.
-✓
-الاهتمام بالأمان والامتثال
-تُراجع الخدمات المالية أو المنظمة مع الجهات المرخصة والمختصة بحسب القوانين المعمول بها.
+  <script>
+    (() => {
+      const langButton = document.getElementById('langBtn');
+      const navRight = document.getElementById('navRight');
+      const menuToggle = document.getElementById('menuToggle');
+      const form = document.getElementById('contactForm');
+      let language = 'ar';
 
+      function setLanguage(nextLanguage) {
+        language = nextLanguage;
+        const isArabic = language === 'ar';
+        document.documentElement.lang = language;
+        document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
+        document.title = isArabic
+          ? 'OmaxSolutions LLC | حلول الأعمال والتقنية'
+          : 'OmaxSolutions LLC | Business & Technology Solutions';
+        document.querySelectorAll('[data-ar][data-en]').forEach((element) => {
+          const value = element.dataset[isArabic ? 'ar' : 'en'];
+          if (value !== undefined) element.innerHTML = value;
+        });
+        document.querySelectorAll('[data-placeholder-ar][data-placeholder-en]').forEach((element) => {
+          element.placeholder = element.dataset[isArabic ? 'placeholderAr' : 'placeholderEn'];
+        });
+        langButton.textContent = isArabic ? 'English' : 'العربية';
+        langButton.setAttribute('aria-label', isArabic ? 'Switch to English' : 'التبديل إلى العربية');
+        menuToggle.setAttribute('aria-label', isArabic ? 'فتح القائمة' : 'Open menu');
+      }
 
-آلية العمل
-خطوات واضحة من الفكرة إلى التنفيذ
-نبدأ بمحادثة قصيرة لفهم هدفك، ثم نحدد ما يلزم للانتقال إلى الخطوة التالية.
+      langButton.addEventListener('click', () => setLanguage(language === 'ar' ? 'en' : 'ar'));
+      menuToggle.addEventListener('click', () => {
+        const isOpen = navRight.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.textContent = isOpen ? '×' : '☰';
+      });
+      navRight.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navRight.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.textContent = '☰';
+        });
+      });
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const topic = document.getElementById('topic').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if (!name || !topic || !message) return;
+        const text = language === 'ar'
+          ? `مرحباً OmaxSolutions LLC،\nالاسم: ${name}\nالموضوع: ${topic}\nالتفاصيل: ${message}`
+          : `Hello OmaxSolutions LLC,\nName: ${name}\nTopic: ${topic}\nDetails: ${message}`;
+        window.open('https://wa.me/905523156980?text=' + encodeURIComponent(text), '_blank', 'noopener,noreferrer');
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+      setLanguage('ar');
+    })();
+  </script>
+</body>
+</html>
 
-01
-فهم المتطلبات
-نستمع إلى احتياجك ونحدد الهدف والنطاق والمعلومات الأساسية.
-02
-تقييم الخيارات
-نراجع المسارات الممكنة والمتطلبات التقنية أو التجارية ذات الصلة.
-03
-تنسيق الخطوات التالية
-نتفق على الخطوة العملية التالية والأطراف المسؤولة قبل بدء أي التزام.
-
-
-اتصل بنا
-أخبرنا عن مشروعك
-أرسل لنا نبذة عن احتياجك وسنساعدك على تحديد طريقة التواصل والخطوة التالية.
-
-
-تواصل مباشر
-للاستفسارات العامة والتعاون التجاري والمشاريع التقنية.
-◉واتساب / هاتف+90 552 315 6980
-⌖نطاق العملحلول تقنية وتعاون دولي
-
-اكتب رسالتك
-سيتم تجهيز الرسالة لفتحها عبر واتساب ومراجعتها قبل الإرسال.
-الاسم
-موضوع الاستفسار
-تفاصيل الرسالة
-متابعة عبر واتساب ↗
-لن تُرسل البيانات تلقائياً من الموقع؛ ستفتح واتساب لمراجعة الرسالة وإرسالها بنفسك.
-
-
-هل لديك فكرة أو فرصة تعاون؟
-ابدأ بمحادثة واضحة حول احتياجك وأهدافك.
-تواصل معنا الآن ↗
-
-
-OMAXSOLUTIONS LLC
-© OmaxSolutions LLC. جميع الحقوق محفوظة.
-العودة إلى الأعلى ↑
-ملاحظة: المعلومات الواردة في هذا الموقع تعريفية عامة ولا تمثل عرضاً لخدمات مالية أو مصرفية مرخصة أو ضماناً لتنفيذ أي معاملة. تخضع أي خدمة منظمة للقوانين المعمول بها وموافقة الجهات المرخصة ذات الصلة.
