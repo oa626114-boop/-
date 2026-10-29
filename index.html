@@ -491,7 +491,7 @@ document.getElementById("create-invoice-btn").addEventListener("click", async fu
   status.textContent = "جارٍ إنشاء الفاتورة...";
   try {
     const response = await fetch(
-      "https://omax-api-105a.oa626114.workers.dev/api/payment",
+      "https://omax-api-105a.oa626114.workers.dev/create-invoice",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
