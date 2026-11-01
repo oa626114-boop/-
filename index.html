@@ -1,520 +1,95 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#071426">
-  <meta name="description" content="OmaxSolutions LLC — حلول الأعمال والتكامل التقني والتجارة الدولية وحلول الدفع الرقمية.">
-  <meta property="og:title" content="OmaxSolutions LLC | Business & Technology Solutions">
-  <meta property="og:description" content="Connecting business, technology and international trade.">
-  <meta property="og:type" content="website">
-  <title>OmaxSolutions LLC | حلول الأعمال والتقنية</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg:#071426;
-      --bg-soft:#0a1a2f;
-      --panel:#10233c;
-      --panel-light:#142b48;
-      --gold:#e8c27a;
-      --gold-bright:#f4d99d;
-      --text:#f7f9fc;
-      --muted:#b6c4d7;
-      --line:rgba(226,237,250,.13);
-      --shadow:0 24px 70px rgba(0,0,0,.24);
-      --radius:20px;
-      --content:1160px;
-    }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; scroll-padding-top:100px; }
-    body {
-      margin:0; font-family:Arial,Tahoma,sans-serif; color:var(--text);
-      background:var(--bg); line-height:1.75; -webkit-font-smoothing:antialiased;
-    }
-    body::selection { background:var(--gold); color:var(--bg); }
-    a { color:inherit; text-decoration:none; }
-    button,input,textarea { font:inherit; }
-    button,a { -webkit-tap-highlight-color:transparent; }
-    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible {
-      outline:2px solid var(--gold); outline-offset:4px;
-    }
-    .container { width:min(var(--content), calc(100% - 40px)); margin-inline:auto; }
-    .skip-link { position:absolute; top:-60px; inset-inline-start:16px; background:var(--gold); color:#101827; padding:8px 12px; z-index:100; border-radius:8px; }
-    .skip-link:focus { top:12px; }
-    .site-header {
-      position:sticky; top:0; z-index:50;
-      background:rgba(7,20,38,.92); border-bottom:1px solid var(--line);
-      backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-    }
-    .nav-wrap { min-height:78px; display:flex; align-items:center; justify-content:space-between; gap:22px; padding-block:12px; }
-    .brand { display:inline-flex; align-items:center; gap:10px; font-size:clamp(17px,2vw,22px); font-weight:900; letter-spacing:.4px; white-space:nowrap; }
-    .brand-mark {
-      width:38px; height:38px; display:grid; place-items:center; border:1px solid rgba(232,194,122,.55);
-      color:var(--gold); border-radius:12px; font-size:15px; letter-spacing:-1px;
-      background:linear-gradient(145deg,rgba(232,194,122,.13),rgba(232,194,122,.02));
-    }
-    .brand-name span { color:var(--gold); }
-    .nav-right { display:flex; align-items:center; gap:22px; }
-    .nav-links { display:flex; align-items:center; gap:20px; }
-    .nav-links a { color:var(--muted); font-size:14px; transition:color .2s; }
-    .nav-links a:hover { color:var(--gold-bright); }
-    .nav-actions { display:flex; align-items:center; gap:10px; }
-    .menu-toggle { display:none; }
-    .btn {
-      display:inline-flex; align-items:center; justify-content:center; gap:9px;
-      border:1px solid transparent; border-radius:11px; padding:12px 18px;
-      font-size:14px; font-weight:800; cursor:pointer; transition:transform .2s,background .2s,border-color .2s;
-      min-height:46px;
-    }
-    .btn:hover { transform:translateY(-2px); }
-    .btn-primary { color:#182236; background:linear-gradient(135deg,var(--gold-bright),var(--gold)); box-shadow:0 8px 24px rgba(232,194,122,.12); }
-    .btn-primary:hover { background:#f7dfa9; }
-    .btn-outline { border-color:rgba(232,194,122,.6); color:var(--gold-bright); background:rgba(232,194,122,.03); }
-    .btn-outline:hover { background:rgba(232,194,122,.1); }
-    .hero {
-      position:relative; overflow:hidden; padding:clamp(70px,9vw,120px) 0 76px;
-      background:radial-gradient(ellipse at 12% 12%,rgba(32,83,130,.45),transparent 38%),
-                 radial-gradient(ellipse at 88% 40%,rgba(232,194,122,.10),transparent 32%),
-                 linear-gradient(145deg,#071426 0%,#0a1c33 65%,#0b2038 100%);
-    }
-    .hero::after { content:""; position:absolute; width:390px; height:390px; border:1px solid rgba(232,194,122,.12); border-radius:50%; inset-inline-end:-180px; bottom:-260px; box-shadow:0 0 0 35px rgba(232,194,122,.025),0 0 0 75px rgba(232,194,122,.02); pointer-events:none; }
-    .hero-grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr); align-items:center; gap:clamp(35px,6vw,80px); position:relative; z-index:1; }
-    .eyebrow { display:inline-flex; align-items:center; gap:10px; color:var(--gold); font-size:12px; font-weight:900; letter-spacing:1.8px; text-transform:uppercase; }
-    .eyebrow::before { content:""; width:28px; height:1px; background:var(--gold); }
-    h1 { font-size:clamp(37px,5.3vw,66px); line-height:1.15; letter-spacing:-1.5px; margin:20px 0; }
-    h1 span,.gold { color:var(--gold); }
-    .hero-copy { color:var(--muted); font-size:clamp(16px,1.7vw,19px); max-width:650px; margin:0; }
-    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; }
-    .hero-meta { display:flex; gap:18px; flex-wrap:wrap; margin-top:35px; color:var(--muted); font-size:12px; }
-    .hero-meta span { display:inline-flex; align-items:center; gap:8px; }
-    .hero-meta i { width:6px; height:6px; border-radius:50%; background:var(--gold); display:inline-block; }
-    .visual-card {
-      padding:30px; border:1px solid rgba(232,194,122,.27); border-radius:26px;
-      background:linear-gradient(145deg,rgba(20,43,72,.92),rgba(10,26,47,.92)); box-shadow:var(--shadow);
-      position:relative; overflow:hidden;
-    }
-    .visual-card::before { content:""; position:absolute; width:190px; height:190px; border:1px solid rgba(232,194,122,.16); border-radius:50%; top:-105px; inset-inline-end:-80px; box-shadow:0 0 0 22px rgba(232,194,122,.035),0 0 0 46px rgba(232,194,122,.025); }
-    .visual-top { display:flex; justify-content:space-between; align-items:center; gap:12px; position:relative; }
-    .visual-label { color:var(--muted); font-size:12px; letter-spacing:1.2px; }
-    .status-dot { display:inline-flex; align-items:center; gap:7px; color:#c7e7d5; font-size:11px; }
-    .status-dot::before { content:""; width:7px; height:7px; border-radius:50%; background:#73d7a1; }
-    .monogram { display:grid; place-items:center; width:94px; height:94px; margin:32px auto 24px; border-radius:28px; border:1px solid rgba(232,194,122,.5); color:var(--gold); font-size:32px; font-weight:900; letter-spacing:-3px; background:linear-gradient(145deg,rgba(232,194,122,.16),rgba(232,194,122,.025)); box-shadow:inset 0 0 35px rgba(232,194,122,.04); }
-    .visual-card h2 { font-size:22px; text-align:center; margin:0 0 8px; }
-    .visual-card > p { color:var(--muted); text-align:center; font-size:14px; margin:0; }
-    .visual-divider { height:1px; background:var(--line); margin:25px 0 18px; }
-    .visual-foot { display:flex; justify-content:space-between; gap:12px; color:var(--muted); font-size:12px; }
-    .visual-foot strong { color:var(--gold-bright); font-weight:700; }
-    .section { padding:clamp(62px,8vw,96px) 0; }
-    .section-alt { background:var(--bg-soft); border-block:1px solid rgba(255,255,255,.035); }
-    .section-heading { max-width:730px; margin-bottom:34px; }
-    .section-heading h2 { font-size:clamp(28px,4vw,42px); line-height:1.2; margin:12px 0; }
-    .section-heading p { color:var(--muted); margin:0; font-size:16px; }
-    .service-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
-    .service-card {
-      padding:26px; border:1px solid var(--line); border-radius:var(--radius);
-      background:linear-gradient(145deg,rgba(20,43,72,.78),rgba(16,35,60,.78));
-      transition:transform .25s,border-color .25s,background .25s; min-height:235px;
-    }
-    .service-card:hover { transform:translateY(-5px); border-color:rgba(232,194,122,.5); background:var(--panel-light); }
-    .service-icon { width:50px; height:50px; display:grid; place-items:center; border-radius:15px; border:1px solid rgba(232,194,122,.25); color:var(--gold); background:rgba(232,194,122,.07); font-size:24px; }
-    .service-card h3 { font-size:18px; margin:18px 0 8px; }
-    .service-card p { font-size:14px; color:var(--muted); margin:0; }
-    .about-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:50px; align-items:center; }
-    .about-panel { padding:30px; border-radius:24px; border:1px solid rgba(232,194,122,.25); background:linear-gradient(145deg,#102b4e,#0b1b30); }
-    .about-panel .big-mark { font-size:clamp(34px,5vw,54px); font-weight:900; line-height:1.2; letter-spacing:-2px; }
-    .about-panel .big-mark span { color:var(--gold); }
-    .about-panel p { color:var(--muted); margin-bottom:0; }
-    .values { display:grid; gap:18px; margin-top:25px; }
-    .value { display:flex; gap:14px; align-items:flex-start; }
-    .value-check { flex:0 0 28px; height:28px; display:grid; place-items:center; border-radius:50%; color:var(--gold); border:1px solid rgba(232,194,122,.4); font-size:14px; }
-    .value h3 { margin:0 0 3px; font-size:16px; }
-    .value p { margin:0; color:var(--muted); font-size:14px; }
-    .process-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; counter-reset:steps; }
-    .process-card { padding:24px; border:1px solid var(--line); border-radius:16px; background:rgba(16,35,60,.65); }
-    .process-num { color:var(--gold); font-size:28px; font-weight:900; }
-    .process-card h3 { margin:8px 0; font-size:17px; }
-    .process-card p { color:var(--muted); font-size:14px; margin:0; }
-    .contact-shell { display:grid; grid-template-columns:.85fr 1.15fr; gap:28px; align-items:start; }
-    .contact-info,.contact-form { border:1px solid var(--line); border-radius:22px; padding:28px; background:rgba(16,35,60,.7); }
-    .contact-info h3,.contact-form h3 { font-size:21px; margin:0 0 10px; }
-    .contact-info > p,.contact-form > p { color:var(--muted); font-size:14px; margin-top:0; }
-    .contact-link { display:flex; gap:12px; align-items:center; padding:14px 0; border-bottom:1px solid var(--line); }
-    .contact-link:last-child { border-bottom:0; }
-    .contact-symbol { display:grid; place-items:center; flex:0 0 40px; height:40px; border-radius:12px; color:var(--gold); border:1px solid rgba(232,194,122,.22); background:rgba(232,194,122,.06); }
-    .contact-link small { display:block; color:var(--muted); font-size:12px; }
-    .contact-link strong { font-size:14px; overflow-wrap:anywhere; }
-    .field { display:grid; gap:6px; margin-bottom:13px; }
-    .field label { color:#e4ebf5; font-size:13px; font-weight:700; }
-    .field input,.field textarea {
-      width:100%; border:1px solid rgba(226,237,250,.16); border-radius:10px; background:#08172a;
-      color:var(--text); padding:13px 14px; min-height:47px; outline:none;
-    }
-    .field input:focus,.field textarea:focus { border-color:var(--gold); }
-    .field textarea { min-height:120px; resize:vertical; }
-    .form-note { color:var(--muted); font-size:11px; margin:10px 0 0; }
-    .cta-band { padding:32px; border-radius:22px; border:1px solid rgba(232,194,122,.27); background:linear-gradient(110deg,rgba(232,194,122,.11),rgba(16,43,78,.75)); display:flex; justify-content:space-between; align-items:center; gap:24px; }
-    .cta-band h2 { margin:0 0 5px; font-size:clamp(22px,3vw,30px); }
-    .cta-band p { color:var(--muted); margin:0; font-size:14px; }
-    footer { padding:26px 0; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
-    .footer-inner { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
-    .footer-brand { color:var(--text); font-weight:800; }
-    .footer-brand span { color:var(--gold); }
-    .legal-note { color:#91a3ba; font-size:11px; max-width:780px; margin:18px 0 0; }
-    [dir="ltr"] { text-align:left; }
-    [dir="ltr"] .hero-grid,[dir="ltr"] .about-grid,[dir="ltr"] .contact-shell { direction:ltr; }
-    [dir="ltr"] .hero-meta,[dir="ltr"] .hero-actions { justify-content:flex-start; }
-    [dir="ltr"] .eyebrow { letter-spacing:1.1px; }
-    @media (max-width:900px) {
-      .nav-wrap { flex-wrap:wrap; }
-      .nav-right { gap:14px; }
-      .nav-links { gap:13px; }
-      .hero-grid { grid-template-columns:1fr  minmax(250px,.7fr); gap:28px; }
-      .service-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-      .about-grid { gap:28px; }
-    }
-    @media (max-width:700px) {
-      .container { width:min(var(--content),calc(100% - 30px)); }
-      .nav-wrap { min-height:70px; justify-content:space-between; }
-      .nav-right { width:100%; display:none; align-items:stretch; flex-direction:column; padding:8px 0 12px; }
-      .nav-right.open { display:flex; }
-      .nav-links { flex-direction:column; align-items:stretch; gap:0; }
-      .nav-links a { padding:10px 2px; border-bottom:1px solid var(--line); font-size:14px; }
-      .nav-actions { justify-content:flex-start; }
-      .menu-toggle { display:inline-flex; width:44px; height:44px; padding:0; align-items:center; justify-content:center; border:1px solid var(--line); background:transparent; color:var(--text); border-radius:10px; font-size:22px; }
-      .hero { padding:60px 0 55px; }
-      .hero-grid,.about-grid,.contact-shell { grid-template-columns:1fr; }
-      .hero-grid { gap:34px; }
-      .visual-card { max-width:460px; width:100%; margin-inline:auto; }
-      .service-grid,.process-grid { grid-template-columns:1fr; }
-      .service-card { min-height:auto; }
-      .cta-band { align-items:flex-start; flex-direction:column; padding:25px; }
-      .section { padding:58px 0; }
-      .about-panel,.contact-info,.contact-form { padding:23px; }
-    }
-    @media (prefers-reduced-motion:reduce) {
-      html { scroll-behavior:auto; }
-      *,*::before,*::after { transition:none !important; animation:none !important; }
-    }
-  </style>
-</head>
-<body>
-  <a class="skip-link" href="#main" data-ar="انتقل إلى المحتوى" data-en="Skip to content">انتقل إلى المحتوى</a>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#home" dir="ltr" aria-label="OmaxSolutions LLC home">
-        <span class="brand-mark">OM</span>
-        <span class="brand-name">OMAX<span>SOLUTIONS</span> LLC</span>
-      </a>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="فتح القائمة" aria-expanded="false">☰</button>
-      <div class="nav-right" id="navRight">
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
-          <a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
-          <a href="#about" data-ar="من نحن" data-en="About us">من نحن</a>
-          <a href="#approach" data-ar="آلية العمل" data-en="Our approach">آلية العمل</a>
-          <a href="#contact" data-ar="اتصل بنا" data-en="Contact">اتصل بنا</a>
-        </nav>
-        <div class="nav-actions">
-          <button class="btn btn-outline" id="langBtn" type="button" aria-label="Switch language">English</button>
-          <a class="btn btn-primary" href="#contact" data-ar="ابدأ التواصل ↗" data-en="Get in touch ↗">ابدأ التواصل ↗</a>
-        </div>
-      </div>
-    </div>
-  </header>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="آفاق سوريا AFAQ SYRIA — الاستثمار العقاري والبنية التحتية والطاقة والزراعة والتنمية المستدامة في سوريا."><meta name="theme-color" content="#081c28"><meta name="color-scheme" content="light"><title>AFAQ SYRIA | آفاق سوريا للاستثمار والتنمية</title><style>
+:root{--navy:#102b35;--navy2:#173e49;--gold:#d8ad62;--cream:#f5f3ee;--ink:#1b292d;--muted:#68777b}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.8}a{color:inherit;text-decoration:none}.top{position:sticky;top:0;z-index:10;background:#102b35f5;color:#fff;box-shadow:0 3px 18px #0002}.nav{max-width:1200px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:12px;font-weight:bold}.mark{width:44px;height:44px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:23px}.brand small{display:block;font-size:11px;color:#dce4e2;font-weight:normal}.menu{border:1px solid #ffffff55;color:white;background:transparent;padding:8px 12px;border-radius:8px}.links{display:flex;gap:14px;flex-wrap:wrap;font-size:13px}.links a:hover{color:var(--gold)}.hero{background:linear-gradient(90deg,#091e27e8,#102b3570),url('images/afaq-hero.svg') center/cover;color:#fff;padding:90px 20px 75px}.hero-inner{max-width:1150px;margin:auto}.eyebrow{color:var(--gold);font-weight:bold;letter-spacing:.5px}h1{font-size:clamp(30px,5vw,56px);line-height:1.35;margin:12px 0;max-width:850px}.hero p{max-width:820px;color:#e3e9e7;font-size:17px}.hero .cta{display:inline-block;margin-top:15px;padding:10px 22px;background:var(--gold);color:#182b31;border-radius:8px;font-weight:bold}.wrap{max-width:1200px;margin:auto;padding:60px 20px}.intro,.vision{background:#fff;border-radius:16px;padding:28px;margin-bottom:24px;box-shadow:0 7px 24px #102b3510}h2{color:var(--navy);margin:0 0 8px}.intro p,.vision p,.description{color:#58676b}.index{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}.index a{background:#fff;border:1px solid #e0e3df;padding:15px;border-radius:10px;font-weight:bold;color:var(--navy);transition:.2s}.index a:hover{border-color:var(--gold);transform:translateY(-3px)}.index small{display:block;color:var(--muted);font-weight:normal}.portfolio{padding:34px 0;border-bottom:1px solid #d8ddd9;scroll-margin-top:85px}.portfolio-title{display:flex;align-items:center;gap:14px}.portfolio-title>span{background:var(--navy);color:var(--gold);padding:8px 13px;border-radius:8px;white-space:nowrap}.portfolio-title h2{margin:0}.portfolio-title p{margin:0;color:var(--muted);font-size:12px;letter-spacing:.5px}.portfolio-title em{margin-right:auto;color:var(--muted);font-size:13px;font-style:normal}.photo-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:18px}.photo-card{padding:0;text-align:right;border:1px solid #e1e4e0;border-radius:12px;overflow:hidden;background:#fff;cursor:pointer;box-shadow:0 4px 15px #102b350c;transition:.2s}.photo-card:hover{transform:translateY(-4px);box-shadow:0 9px 22px #102b3520}.photo-card img{width:100%;height:145px;object-fit:cover;display:block;background:#dce2df}.photo-card span{display:block;padding:10px 11px}.photo-card b{display:block;color:var(--navy);font-size:13px}.photo-card small{display:block;color:var(--muted);font-size:11px}.contact{background:var(--navy);color:#fff;border-radius:16px;padding:28px;text-align:center;margin-top:45px}.contact h2{color:#fff}.contact a{color:var(--gold);text-decoration:underline}footer{background:#091e27;color:#d6dfdd;text-align:center;padding:22px;font-size:13px}.modal{display:none;position:fixed;inset:0;background:#06151bed;z-index:50;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modal-box{max-width:1100px;width:100%;text-align:center;color:#fff}.modal img{max-width:100%;max-height:78vh;object-fit:contain;border-radius:10px}.modal button{display:block;margin:0 0 10px auto;border:0;background:none;color:#fff;font-size:32px}@media(max-width:850px){.links{display:none;position:absolute;top:68px;right:12px;left:12px;background:var(--navy);padding:16px;border-radius:10px;flex-direction:column}.links.open{display:flex}.index{grid-template-columns:repeat(2,1fr)}.photo-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:520px){.hero{padding:65px 18px}.wrap{padding:42px 14px}.photo-grid{grid-template-columns:repeat(2,1fr);gap:9px}.photo-card img{height:125px}.portfolio-title{align-items:flex-start;flex-wrap:wrap}.portfolio-title em{margin-right:0}.index a{font-size:13px;padding:12px}}
 
-  <main id="main">
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow" data-ar="حلول أعمال مترابطة" data-en="Connected business solutions">حلول أعمال مترابطة</div>
-          <h1 data-ar="نربط الأعمال <span>بالتقنية</span> والفرص العالمية" data-en="Connecting business with <span>technology</span> and global opportunity">نربط الأعمال <span>بالتقنية</span> والفرص العالمية</h1>
-          <p class="hero-copy" data-ar="تساعد OmaxSolutions LLC الشركات على تطوير عملياتها من خلال حلول تقنية عملية، وتكامل الأنظمة، ودعم التجارة الدولية، وتجارب رقمية أكثر سلاسة." data-en="OmaxSolutions LLC helps businesses improve operations through practical technology solutions, system integration, international trade support, and smoother digital experiences.">تساعد OmaxSolutions LLC الشركات على تطوير عملياتها من خلال حلول تقنية عملية، وتكامل الأنظمة، ودعم التجارة الدولية، وتجارب رقمية أكثر سلاسة.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#services" data-ar="اكتشف خدماتنا ↓" data-en="Explore our services ↓">اكتشف خدماتنا ↓</a>
-            <a class="btn btn-outline" href="#contact" data-ar="تواصل مع فريقنا" data-en="Talk to our team">تواصل مع فريقنا</a>
-          </div>
-          <div class="hero-meta">
-            <span><i></i><b data-ar="تركيز على احتياجات الأعمال" data-en="Business-focused">تركيز على احتياجات الأعمال</b></span>
-            <span><i></i><b data-ar="حلول مرنة وقابلة للتوسع" data-en="Flexible and scalable">حلول مرنة وقابلة للتوسع</b></span>
-          </div>
-        </div>
-        <aside class="visual-card" aria-label="OmaxSolutions overview">
-          <div class="visual-top">
-            <span class="visual-label" data-ar="نظرة عامة على الشركة" data-en="COMPANY OVERVIEW">نظرة عامة على الشركة</span>
-            <span class="status-dot" data-ar="جاهزون للتواصل" data-en="Open for enquiries">جاهزون للتواصل</span>
-          </div>
-          <div class="monogram" aria-hidden="true">OMX</div>
-          <h2 data-ar="أعمال. تقنية. ترابط." data-en="Business. Technology. Connection.">أعمال. تقنية. ترابط.</h2>
-          <p data-ar="شريكك لتنسيق الحلول وتطوير الفرص." data-en="A partner for coordinated solutions and new opportunities.">شريكك لتنسيق الحلول وتطوير الفرص.</p>
-          <div class="visual-divider"></div>
-          <div class="visual-foot"><span data-ar="مجالاتنا" data-en="Our focus">مجالاتنا</span><strong data-ar="التقنية • التجارة • التكامل" data-en="Technology • Trade • Integration">التقنية • التجارة • التكامل</strong></div>
-        </aside>
-      </div>
-    </section>
+/* AFAQ SYRIA visual refinement — original sections and text retained */
+.hero{position:relative;isolation:isolate;background-position:center 48%;min-height:500px}.hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,rgba(5,19,27,.88),rgba(8,31,40,.52) 58%,rgba(8,31,40,.18))}.hero-inner{position:relative}.hero .eyebrow{display:inline-block;border:1px solid rgba(216,173,98,.55);background:rgba(7,24,32,.42);padding:7px 13px;border-radius:999px}.hero h1{text-shadow:0 3px 22px rgba(0,0,0,.32)}.intro,.vision,.contact{border:1px solid rgba(216,173,98,.18)}.index a{min-height:82px;display:flex;flex-direction:column;justify-content:center;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}.index a:hover{box-shadow:0 10px 24px rgba(16,43,53,.12)}.photo-card{position:relative}.photo-card img{transition:transform .45s ease,filter .35s ease}.photo-card:hover img{transform:scale(1.045);filter:saturate(1.08)}.photo-card span{position:relative;background:linear-gradient(180deg,#fff,#fbfaf7)}.portfolio{scroll-margin-top:95px}.contact{background:linear-gradient(135deg,#102b35,#173e49);box-shadow:0 14px 35px rgba(7,24,32,.16)}footer{border-top:1px solid rgba(216,173,98,.35)}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow" data-ar="ما الذي نقدمه" data-en="WHAT WE DO">ما الذي نقدمه</div>
-          <h2 data-ar="خدمات تدعم نمو أعمالك" data-en="Services designed to support your growth">خدمات تدعم نمو أعمالك</h2>
-          <p data-ar="مجموعة من الخدمات المرنة المصممة لتلبية احتياجات الشركات وتسهيل التنسيق بين العمليات التجارية والحلول التقنية." data-en="Flexible services designed around business needs, helping align commercial operations with practical technology solutions.">مجموعة من الخدمات المرنة المصممة لتلبية احتياجات الشركات وتسهيل التنسيق بين العمليات التجارية والحلول التقنية.</p>
-        </div>
-        <div class="service-grid">
-          <article class="service-card"><div class="service-icon" aria-hidden="true">⌘</div><h3 data-ar="التكامل التقني وواجهات API" data-en="Technology & API Integration">التكامل التقني وواجهات API</h3><p data-ar="المساعدة في ربط الأنظمة والخدمات الرقمية، وتنظيم تدفق البيانات، وتخطيط عمليات التكامل وفق متطلبات المشروع." data-en="Support for connecting systems and digital services, organizing data flows, and planning integrations around project requirements.">المساعدة في ربط الأنظمة والخدمات الرقمية، وتنظيم تدفق البيانات، وتخطيط عمليات التكامل وفق متطلبات المشروع.</p></article>
-          <article class="service-card"><div class="service-icon" aria-hidden="true">↗</div><h3 data-ar="حلول الدفع والأعمال الرقمية" data-en="Digital Payment & Business Solutions">حلول الدفع والأعمال الرقمية</h3><p data-ar="استكشاف متطلبات الدفع الرقمي وسير العمل التشغيلي، مع التركيز على وضوح الإجراءات والتوافق مع مزودي الخدمة المعتمدين." data-en="Explore digital payment requirements and operational workflows, with an emphasis on clear processes and working with authorized providers.">استكشاف متطلبات الدفع الرقمي وسير العمل التشغيلي، مع التركيز على وضوح الإجراءات والتوافق مع مزودي الخدمة المعتمدين.</p></article>
-          <article class="service-card"><div class="service-icon" aria-hidden="true">◇</div><h3 data-ar="التجارة الدولية وتنسيق الأعمال" data-en="International Trade & Business">التجارة الدولية وتنسيق الأعمال</h3><p data-ar="دعم تنسيق المتطلبات التجارية، والتواصل بين الأطراف، وتجهيز معلومات المشاريع والفرص التجارية." data-en="Support commercial coordination, communication between counterparties, and preparation of project and opportunity information.">دعم تنسيق المتطلبات التجارية، والتواصل بين الأطراف، وتجهيز معلومات المشاريع والفرص التجارية.</p></article>
-          <article class="service-card"><div class="service-icon" aria-hidden="true">◎</div><h3 data-ar="المحافظ والأصول الرقمية" data-en="Digital Wallets & Assets">المحافظ والأصول الرقمية</h3><p data-ar="معلومات ومساندة تقنية عامة حول المحافظ الرقمية، ومتطلبات التكامل، وممارسات الاستخدام الآمن." data-en="General technical information on digital wallets, integration requirements, and safer usage practices.">معلومات ومساندة تقنية عامة حول المحافظ الرقمية، ومتطلبات التكامل، وممارسات الاستخدام الآمن.</p></article>
-          <article class="service-card"><div class="service-icon" aria-hidden="true">▤</div><h3 data-ar="تطوير الحضور الرقمي" data-en="Digital Presence">تطوير الحضور الرقمي</h3><p data-ar="مواقع وصفحات تعريفية متجاوبة تساعد الشركات على عرض خدماتها بوضوح عبر الهواتف وأجهزة الكمبيوتر." data-en="Responsive websites and company profiles that present services clearly across mobile devices and desktop computers.">مواقع وصفحات تعريفية متجاوبة تساعد الشركات على عرض خدماتها بوضوح عبر الهواتف وأجهزة الكمبيوتر.</p></article>
-          <article class="service-card"><div class="service-icon" aria-hidden="true">✧</div><h3 data-ar="استشارات وتنسيق المشاريع" data-en="Project Advisory & Coordination">استشارات وتنسيق المشاريع</h3><p data-ar="تحديد الاحتياجات، وتنظيم نطاق العمل، وتنسيق الخطوات التالية مع الجهات المختصة ومزودي الخدمات." data-en="Clarify needs, organize project scope, and coordinate next steps with relevant specialists and service providers.">تحديد الاحتياجات، وتنظيم نطاق العمل، وتنسيق الخطوات التالية مع الجهات المختصة ومزودي الخدمات.</p></article>
-        </div>
-      </div>
-    </section>
+/* ===== AFAQ SYRIA | Premium corporate experience ===== */
+:root{--navy:#081c28;--navy2:#123644;--gold:#d8b46a;--gold2:#f0d9a4;--cream:#f6f5f1;--ink:#14252d;--muted:#69777b;--line:#e4e7e3;--white:#fff}
+html{scroll-padding-top:92px}
+body{background:#fff;color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.85}
+.top{background:rgba(6,24,35,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,180,106,.55)}
+.nav{max-width:1320px;min-height:78px;padding:12px 26px}
+.brand{font-size:17px;letter-spacing:.1px}
+.mark{width:48px;height:48px;background:linear-gradient(145deg,#193d49,#071923);box-shadow:0 0 0 4px rgba(216,180,106,.09),inset 0 0 0 1px rgba(255,255,255,.08)}
+.links{gap:clamp(10px,1.5vw,22px);font-size:13px}
+.links a{position:relative;padding:8px 0;white-space:nowrap}
+.links a:after{content:"";position:absolute;right:0;bottom:0;width:0;height:2px;background:var(--gold);transition:width .25s}
+.links a:hover:after{width:100%}
+.menu{border-color:#d8b46a88;border-radius:999px;padding:9px 16px}
+.hero{min-height:670px;display:flex;align-items:center;padding:100px 24px 125px;background-image:linear-gradient(90deg,rgba(3,16,24,.9),rgba(5,24,34,.64) 55%,rgba(5,24,34,.2)),url('images/afaq-hero.svg');background-position:center;background-size:cover;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:auto 0 0;height:170px;background:linear-gradient(transparent,rgba(4,19,28,.45));pointer-events:none}
+.hero-inner{max-width:1280px;position:relative;z-index:1}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(216,180,106,.55);background:rgba(5,22,31,.42);border-radius:999px;padding:9px 17px;font-size:12px;letter-spacing:1.4px}
+.hero h1{max-width:850px;font-size:clamp(36px,5.2vw,68px);line-height:1.25;margin:24px 0 18px;text-shadow:0 8px 30px #0006}
+.hero p{max-width:740px;color:#e5eceb;font-size:clamp(16px,1.6vw,19px);line-height:2}
+.hero .cta{margin:18px 0 0;padding:14px 25px;border-radius:999px;background:linear-gradient(135deg,#f0d99e,#c89d4e);box-shadow:0 12px 30px #0003;transition:transform .2s,box-shadow .2s}
+.hero .cta:hover{transform:translateY(-3px);box-shadow:0 16px 35px #0005}
+.hero .cta.secondary{background:transparent;border:1px solid #fff9;color:white;margin-right:10px;box-shadow:none}
+.wrap{max-width:1320px;padding:64px 24px}
+.intro,.vision{border:1px solid var(--line);border-radius:22px;padding:clamp(22px,3vw,38px);box-shadow:0 16px 45px rgba(9,35,45,.055)}
+.eyebrow{font-size:12px;letter-spacing:1px}
+h2{font-size:clamp(23px,2.4vw,34px);letter-spacing:-.3px}
+.intro h2{margin-top:8px}
+.index{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.index a{position:relative;min-height:100px;border:1px solid #e6e8e3;border-radius:14px;padding:18px 18px 16px;background:linear-gradient(145deg,#fff,#faf9f5);box-shadow:0 5px 18px rgba(8,28,40,.035);font-size:14px;line-height:1.6}
+.index a:before{content:"";position:absolute;right:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--gold);opacity:.8}
+.index a:hover{border-color:#d9bd83;transform:translateY(-4px);box-shadow:0 14px 28px rgba(8,28,40,.09)}
+.index small{margin-top:7px;font-size:11px}
+.vision{background:linear-gradient(135deg,#f8f7f2,#fff);text-align:center}
+.vision h2{font-size:clamp(20px,2.3vw,30px);letter-spacing:.8px;color:#9b793d}
+.vision p{max-width:900px;margin:14px auto 0;font-size:16px;line-height:2}
+.portfolio{padding:54px 0 60px;border-bottom:1px solid #e8ebe7;scroll-margin-top:95px}
+.portfolio:nth-of-type(even){background:linear-gradient(180deg,#fbfbf9,#fff);box-shadow:0 0 0 100vmax #fbfbf9;clip-path:inset(0 -100vmax)}
+.portfolio-title{gap:18px;align-items:center;margin-bottom:10px}
+.portfolio-title>span{background:linear-gradient(145deg,#173d49,#081c28);color:var(--gold2);padding:10px 16px;border-radius:10px;font-size:13px;box-shadow:0 8px 18px #102b3520}
+.portfolio-title h2{font-size:clamp(22px,2.3vw,31px)}
+.portfolio-title p{font-size:11px;letter-spacing:1.2px}
+.portfolio-title em{font-size:12px;background:#f4eddd;color:#8a6b32;border-radius:999px;padding:6px 12px}
+.description{max-width:900px;font-size:15px;line-height:2;margin:14px 0 22px}
+.photo-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;margin-top:22px}
+.photo-card{border:1px solid #e7e9e5;border-radius:16px;box-shadow:0 8px 24px rgba(8,28,40,.055);text-align:right;overflow:hidden}
+.photo-card:hover{transform:translateY(-5px);box-shadow:0 18px 34px rgba(8,28,40,.12)}
+.photo-card img{height:190px;transition:transform .5s ease,filter .3s ease}
+.photo-card:hover img{transform:scale(1.055);filter:saturate(1.12)}
+.photo-card span{padding:12px 14px;min-height:55px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.photo-card b{font-size:13px}
+.photo-card small{font-size:10px;white-space:nowrap;color:#8c774f}
+.contact{position:relative;overflow:hidden;margin:70px 0 12px;padding:clamp(28px,5vw,58px);border:1px solid rgba(216,180,106,.35);border-radius:24px;background:radial-gradient(circle at 10% 10%,#1e4a57 0,transparent 38%),linear-gradient(135deg,#071a25,#123744);box-shadow:0 22px 55px rgba(5,25,35,.18)}
+.contact h2{font-size:clamp(24px,3vw,38px)}
+.contact p{color:#e2e9e7}
+.contact a{color:#f0d99e;text-decoration:none;font-weight:bold}
+.contact a:hover{text-decoration:underline}
+.contact-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:24px}
+.contact-actions a{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border:1px solid #d8b46a88;border-radius:999px;background:#ffffff0b}
+.contact-actions a.primary{background:linear-gradient(135deg,#f0d99e,#c89d4e);color:#102b35;border:0}
+footer{background:#06151e;border-top:1px solid #d8b46a66;padding:28px 18px}
+.modal{backdrop-filter:blur(8px)}
+.modal-box{max-width:1200px}
+.modal img{border:1px solid #ffffff24;box-shadow:0 25px 80px #0008}
+.modal button{width:42px;height:42px;border:1px solid #ffffff55;border-radius:50%;background:#102b35;color:white;line-height:1}
+@media(max-width:1000px){.photo-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.index{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:590px}}
+@media(max-width:700px){.nav{padding:10px 14px;min-height:68px}.brand{font-size:14px}.mark{width:42px;height:42px}.links{top:66px;right:10px;left:10px;gap:4px}.links a{padding:9px 5px}.hero{min-height:570px;padding:75px 18px 100px;background-position:58% center}.hero h1{font-size:clamp(32px,9vw,46px)}.hero p{font-size:15px}.wrap{padding:42px 15px}.index{grid-template-columns:1fr 1fr;gap:9px}.index a{min-height:92px;padding:13px 12px;font-size:12px}.portfolio{padding:38px 0 42px}.portfolio-title{gap:9px}.portfolio-title>span{font-size:11px;padding:8px 10px}.portfolio-title h2{font-size:20px}.portfolio-title p{font-size:9px}.portfolio-title em{font-size:10px;padding:5px 8px}.description{font-size:13px}.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo-card{border-radius:12px}.photo-card img{height:142px}.photo-card span{padding:9px 10px;min-height:48px}.photo-card b{font-size:11px}.photo-card small{font-size:9px}.contact{margin-top:42px;padding:28px 18px}}
+@media(max-width:380px){.index{grid-template-columns:1fr}.photo-card img{height:125px}.portfolio-title{flex-wrap:wrap}.portfolio-title em{margin-right:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 
-    <section class="section section-alt" id="about">
-      <div class="container about-grid">
-        <div class="about-panel">
-          <div class="eyebrow" data-ar="من نحن" data-en="ABOUT OMAXSOLUTIONS">من نحن</div>
-          <div class="big-mark" dir="ltr">OMAX<span>SOLUTIONS</span></div>
-          <p data-ar="حلول عملية، تواصل واضح، ورؤية تضع احتياجات العميل في المقدمة." data-en="Practical solutions, clear communication, and a vision that puts client needs first.">حلول عملية، تواصل واضح، ورؤية تضع احتياجات العميل في المقدمة.</p>
-        </div>
-        <div>
-          <div class="section-heading">
-            <div class="eyebrow" data-ar="نهجنا" data-en="OUR APPROACH">نهجنا</div>
-            <h2 data-ar="نبني علاقات عمل على الوضوح والثقة" data-en="Building business relationships through clarity and trust">نبني علاقات عمل على الوضوح والثقة</h2>
-            <p data-ar="نؤمن بأن التعاون الناجح يبدأ بفهم المتطلبات وتحديد نطاق العمل بوضوح، ثم تنسيق الحل المناسب مع مراعاة الأمان والامتثال والجدوى العملية." data-en="We believe successful collaboration starts with understanding requirements and defining scope clearly, then coordinating a suitable solution with attention to security, compliance, and practicality.">نؤمن بأن التعاون الناجح يبدأ بفهم المتطلبات وتحديد نطاق العمل بوضوح، ثم تنسيق الحل المناسب مع مراعاة الأمان والامتثال والجدوى العملية.</p>
-          </div>
-          <div class="values">
-            <div class="value"><span class="value-check">✓</span><div><h3 data-ar="تواصل واضح" data-en="Clear communication">تواصل واضح</h3><p data-ar="نحرص على توضيح نطاق الخدمة والمتطلبات والخطوات المتوقعة منذ البداية." data-en="We aim to clarify service scope, requirements, and expected next steps from the outset.">نحرص على توضيح نطاق الخدمة والمتطلبات والخطوات المتوقعة منذ البداية.</p></div></div>
-            <div class="value"><span class="value-check">✓</span><div><h3 data-ar="حلول تناسب الاحتياج" data-en="Solutions tailored to needs">حلول تناسب الاحتياج</h3><p data-ar="نركز على فهم هدف المشروع قبل اقتراح مسار العمل." data-en="We focus on understanding the project goal before proposing a path forward.">نركز على فهم هدف المشروع قبل اقتراح مسار العمل.</p></div></div>
-            <div class="value"><span class="value-check">✓</span><div><h3 data-ar="الاهتمام بالأمان والامتثال" data-en="Security and compliance awareness">الاهتمام بالأمان والامتثال</h3><p data-ar="تُراجع الخدمات المالية أو المنظمة مع الجهات المرخصة والمختصة بحسب القوانين المعمول بها." data-en="Regulated or financial services should be reviewed with appropriately licensed providers and relevant specialists under applicable laws.">تُراجع الخدمات المالية أو المنظمة مع الجهات المرخصة والمختصة بحسب القوانين المعمول بها.</p></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
+</style></head><body><header class="top"><div class="nav"><a class="brand" href="#home"><span class="mark">آ</span><span>آفاق سوريا <small>AFAQ SYRIA</small></span></a><button class="menu" id="menu">☰ قائمة المحافظ</button><nav class="links" id="links"><a href="#home">الرئيسية</a><a href="#vision">من نحن</a><a href="#index">القطاعات الاستثمارية</a><a href="#portfolio-1">المشاريع</a><a href="#contact">تواصل معنا</a></nav></div></header>
+<section class="hero" id="home"><div class="hero-inner"><div class="eyebrow">INVESTMENT • RECONSTRUCTION • SUSTAINABLE DEVELOPMENT</div><h1>آفاق سوريا للاستثمار العقاري والبنية التحتية والتنمية</h1><p>من سوريا وإلى سوريا: ثماني محافظ متخصصة، تضم كل محفظة عشرة مواضع للصور لعرض مجالات المشاريع والفرص الاستثمارية وإعادة الإعمار والتنمية في مختلف المحافظات السورية.</p><a class="cta" href="#index">استكشف المحافظ الاستثمارية</a></div></section>
 
-    <section class="section" id="approach">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow" data-ar="آلية العمل" data-en="HOW WE WORK">آلية العمل</div>
-          <h2 data-ar="خطوات واضحة من الفكرة إلى التنفيذ" data-en="A clear path from idea to action">خطوات واضحة من الفكرة إلى التنفيذ</h2>
-          <p data-ar="نبدأ بمحادثة قصيرة لفهم هدفك، ثم نحدد ما يلزم للانتقال إلى الخطوة التالية." data-en="We start with a conversation to understand your goal, then identify what is needed for the next step.">نبدأ بمحادثة قصيرة لفهم هدفك، ثم نحدد ما يلزم للانتقال إلى الخطوة التالية.</p>
-        </div>
-        <div class="process-grid">
-          <article class="process-card"><div class="process-num">01</div><h3 data-ar="فهم المتطلبات" data-en="Understand requirements">فهم المتطلبات</h3><p data-ar="نستمع إلى احتياجك ونحدد الهدف والنطاق والمعلومات الأساسية." data-en="We listen to your needs and identify the goal, scope, and essential information.">نستمع إلى احتياجك ونحدد الهدف والنطاق والمعلومات الأساسية.</p></article>
-          <article class="process-card"><div class="process-num">02</div><h3 data-ar="تقييم الخيارات" data-en="Review options">تقييم الخيارات</h3><p data-ar="نراجع المسارات الممكنة والمتطلبات التقنية أو التجارية ذات الصلة." data-en="We review possible approaches and relevant technical or commercial requirements.">نراجع المسارات الممكنة والمتطلبات التقنية أو التجارية ذات الصلة.</p></article>
-          <article class="process-card"><div class="process-num">03</div><h3 data-ar="تنسيق الخطوات التالية" data-en="Coordinate next steps">تنسيق الخطوات التالية</h3><p data-ar="نتفق على الخطوة العملية التالية والأطراف المسؤولة قبل بدء أي التزام." data-en="We agree on practical next steps and responsible parties before any commitment begins.">نتفق على الخطوة العملية التالية والأطراف المسؤولة قبل بدء أي التزام.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="contact">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow" data-ar="اتصل بنا" data-en="CONTACT US">اتصل بنا</div>
-          <h2 data-ar="أخبرنا عن مشروعك" data-en="Tell us about your project">أخبرنا عن مشروعك</h2>
-          <p data-ar="أرسل لنا نبذة عن احتياجك وسنساعدك على تحديد طريقة التواصل والخطوة التالية." data-en="Share a short description of your needs and we’ll help identify the right next step.">أرسل لنا نبذة عن احتياجك وسنساعدك على تحديد طريقة التواصل والخطوة التالية.</p>
-        </div>
-        <div class="contact-shell">
-          <div class="contact-info">
-            <h3 data-ar="تواصل مباشر" data-en="Direct contact">تواصل مباشر</h3>
-            <p data-ar="للاستفسارات العامة والتعاون التجاري والمشاريع التقنية." data-en="For general enquiries, business collaboration, and technology projects.">للاستفسارات العامة والتعاون التجاري والمشاريع التقنية.</p>
-            <a class="contact-link" href="https://wa.me/905523156980" target="_blank" rel="noopener noreferrer">
-              <span class="contact-symbol" aria-hidden="true">◉</span><span><small data-ar="واتساب / هاتف" data-en="WhatsApp / Phone">واتساب / هاتف</small><strong dir="ltr">+90 552 315 6980</strong></span>
-            </a>
-            <div class="contact-link">
-              <span class="contact-symbol" aria-hidden="true">⌖</span><span><small data-ar="نطاق العمل" data-en="Business focus">نطاق العمل</small><strong data-ar="حلول تقنية وتعاون دولي" data-en="Technology & international collaboration">حلول تقنية وتعاون دولي</strong></span>
-            </div>
-          </div>
-          <div class="contact-form">
-            <h3 data-ar="اكتب رسالتك" data-en="Write your message">اكتب رسالتك</h3>
-            <p data-ar="سيتم تجهيز الرسالة لفتحها عبر واتساب ومراجعتها قبل الإرسال." data-en="Your message will be prepared in WhatsApp for you to review before sending.">سيتم تجهيز الرسالة لفتحها عبر واتساب ومراجعتها قبل الإرسال.</p>
-            <form id="contactForm">
-              <div class="field"><label for="name" data-ar="الاسم" data-en="Name">الاسم</label><input id="name" name="name" autocomplete="name" required maxlength="100" placeholder="الاسم الكامل" data-placeholder-ar="الاسم الكامل" data-placeholder-en="Your full name"></div>
-              <div class="field"><label for="topic" data-ar="موضوع الاستفسار" data-en="Enquiry topic">موضوع الاستفسار</label><input id="topic" name="topic" required maxlength="150" placeholder="كيف يمكننا مساعدتك؟" data-placeholder-ar="كيف يمكننا مساعدتك؟" data-placeholder-en="How can we help?"></div>
-              <div class="field"><label for="message" data-ar="تفاصيل الرسالة" data-en="Message details">تفاصيل الرسالة</label><textarea id="message" name="message" required maxlength="2000" placeholder="اكتب تفاصيل طلبك هنا..." data-placeholder-ar="اكتب تفاصيل طلبك هنا..." data-placeholder-en="Write a few details about your request..."></textarea></div>
-              <button class="btn btn-primary" type="submit" data-ar="متابعة عبر واتساب ↗" data-en="Continue to WhatsApp ↗">متابعة عبر واتساب ↗</button>
-              <p class="form-note" data-ar="لن تُرسل البيانات تلقائياً من الموقع؛ ستفتح واتساب لمراجعة الرسالة وإرسالها بنفسك." data-en="The website does not send your data automatically; WhatsApp opens so you can review and send the message yourself.">لن تُرسل البيانات تلقائياً من الموقع؛ ستفتح واتساب لمراجعة الرسالة وإرسالها بنفسك.</p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-band">
-          <div><h2 data-ar="هل لديك فكرة أو فرصة تعاون؟" data-en="Have an idea or collaboration opportunity?">هل لديك فكرة أو فرصة تعاون؟</h2><p data-ar="ابدأ بمحادثة واضحة حول احتياجك وأهدافك." data-en="Start with a clear conversation about your needs and goals.">ابدأ بمحادثة واضحة حول احتياجك وأهدافك.</p></div>
-          <a class="btn btn-primary" href="https://wa.me/905523156980" target="_blank" rel="noopener noreferrer" data-ar="تواصل معنا الآن ↗" data-en="Contact us now ↗">تواصل معنا الآن ↗</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand" dir="ltr">OMAX<span>SOLUTIONS</span> LLC</div>
-        <div>© <span id="year"></span> OmaxSolutions LLC. <span data-ar="جميع الحقوق محفوظة." data-en="All rights reserved.">جميع الحقوق محفوظة.</span></div>
-        <a href="#home" data-ar="العودة إلى الأعلى ↑" data-en="Back to top ↑">العودة إلى الأعلى ↑</a>
-      </div>
-      <p class="legal-note" data-ar="ملاحظة: المعلومات الواردة في هذا الموقع تعريفية عامة ولا تمثل عرضاً لخدمات مالية أو مصرفية مرخصة أو ضماناً لتنفيذ أي معاملة. تخضع أي خدمة منظمة للقوانين المعمول بها وموافقة الجهات المرخصة ذات الصلة." data-en="Notice: Information on this website is general and does not constitute an offer of licensed financial or banking services or a guarantee that any transaction will be executed. Regulated services are subject to applicable laws and approval by relevant licensed providers.">ملاحظة: المعلومات الواردة في هذا الموقع تعريفية عامة ولا تمثل عرضاً لخدمات مالية أو مصرفية مرخصة أو ضماناً لتنفيذ أي معاملة. تخضع أي خدمة منظمة للقوانين المعمول بها وموافقة الجهات المرخصة ذات الصلة.</p>
-    </div>
-  </footer>
-
-  <script>
-    (() => {
-      const langButton = document.getElementById('langBtn');
-      const navRight = document.getElementById('navRight');
-      const menuToggle = document.getElementById('menuToggle');
-      const form = document.getElementById('contactForm');
-      let language = 'ar';
-
-      function setLanguage(nextLanguage) {
-        language = nextLanguage;
-        const isArabic = language === 'ar';
-        document.documentElement.lang = language;
-        document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
-        document.title = isArabic
-          ? 'OmaxSolutions LLC | حلول الأعمال والتقنية'
-          : 'OmaxSolutions LLC | Business & Technology Solutions';
-        document.querySelectorAll('[data-ar][data-en]').forEach((element) => {
-          const value = element.dataset[isArabic ? 'ar' : 'en'];
-          if (value !== undefined) element.innerHTML = value;
-        });
-        document.querySelectorAll('[data-placeholder-ar][data-placeholder-en]').forEach((element) => {
-          element.placeholder = element.dataset[isArabic ? 'placeholderAr' : 'placeholderEn'];
-        });
-        langButton.textContent = isArabic ? 'English' : 'العربية';
-        langButton.setAttribute('aria-label', isArabic ? 'Switch to English' : 'التبديل إلى العربية');
-        menuToggle.setAttribute('aria-label', isArabic ? 'فتح القائمة' : 'Open menu');
-      }
-
-      langButton.addEventListener('click', () => setLanguage(language === 'ar' ? 'en' : 'ar'));
-      menuToggle.addEventListener('click', () => {
-        const isOpen = navRight.classList.toggle('open');
-        menuToggle.setAttribute('aria-expanded', String(isOpen));
-        menuToggle.textContent = isOpen ? '×' : '☰';
-      });
-      navRight.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          navRight.classList.remove('open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-          menuToggle.textContent = '☰';
-        });
-      });
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        const topic = document.getElementById('topic').value.trim();
-        const message = document.getElementById('message').value.trim();
-        if (!name || !topic || !message) return;
-        const text = language === 'ar'
-          ? `مرحباً OmaxSolutions LLC،\nالاسم: ${name}\nالموضوع: ${topic}\nالتفاصيل: ${message}`
-          : `Hello OmaxSolutions LLC,\nName: ${name}\nTopic: ${topic}\nDetails: ${message}`;
-        window.open('https://wa.me/905523156980?text=' + encodeURIComponent(text), '_blank', 'noopener,noreferrer');
-      });
-      document.getElementById('year').textContent = new Date().getFullYear();
-      setLanguage('ar');
-    })();
-  </script><!-- OMAXSOLUTIONS API Connection -->
-<div id="omax-api-status"
-     style="padding:12px;margin:16px 0;border-radius:8px;
-            background:#f1f5f9;color:#334155;font-family:Arial,sans-serif">
-  جاري فحص اتصال خدمات OMAXSOLUTIONS...
-</div>
-
-<script>
-(async function () {
-  const status = document.getElementById("omax-api-status");
-  const API = "https://omax-api-105a.oa626114.workers.dev";
-
-  try {
-    const response = await fetch(API + "/api/health");
-    const data = await response.json();
-
-    if (response.ok && data.success === true) {
-      status.textContent = "API متصل — خدمات الشركة تعمل تقنيًا";
-      status.style.background = "#dcfce7";
-      status.style.color = "#166534";
-    } else {
-      throw new Error("API unavailable");
-    }
-  } catch (error) {
-    status.textContent =
-      "تعذر الاتصال بالخدمة. يرجى المحاولة لاحقًا.";
-    status.style.background = "#fee2e2";
-    status.style.color = "#991b1b";
-  }
-})();
-</script>
-
-<section id="invoice-section" dir="rtl" style="max-width:500px;margin:30px auto;padding:24px;border-radius:16px;background:#f4f7fb;color:#14243a;font-family:Arial,sans-serif">
-  <h2>إنشاء فاتورة دفع</h2>
-  <p>OMAXSOLUTIONS LLC</p>
-
-  <label for="invoice-amount">المبلغ</label>
-  <input id="invoice-amount" type="number" min="0.01" step="0.01" value="10" style="display:block;width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px">
-
-  <label for="invoice-currency">عملة الدفع</label>
-  <select id="invoice-currency" style="display:block;width:100%;padding:12px;margin:8px 0 16px">
-    <option value="usdttrc20">USDT (TRC20)</option>
-    <option value="usdterc20">USDT (ERC20)</option>
-    <option value="btc">Bitcoin (BTC)</option>
-    <option value="eth">Ethereum (ETH)</option>
-  </select>
-
-  <label for="invoice-description">وصف الفاتورة</label>
-  <input id="invoice-description" value="خدمات الشركة" style="display:block;width:100%;box-sizing:border-box;padding:12px;margin:8px 0 16px">
-
-  <button id="create-invoice-btn" type="button" style="width:100%;padding:14px;background:#123b70;color:white;border:0;border-radius:8px;font-size:17px">
-    إنشاء فاتورة
-  </button>
-  <p id="invoice-status" role="status"></p>
-  <a id="invoice-payment-link" hidden target="_blank" rel="noopener noreferrer">الانتقال إلى الدفع</a>
+<section class="wrap" aria-label="لمحة عن آفاق سوريا" style="padding-top:0;padding-bottom:28px">
+  <div class="intro" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;text-align:center;margin-top:-42px;position:relative;z-index:2">
+    <div><strong style="display:block;font-size:clamp(26px,3vw,38px);color:#a98543">08</strong><span style="font-size:12px;color:#69777b">محافظ استثمارية متخصصة</span></div>
+    <div><strong style="display:block;font-size:clamp(26px,3vw,38px);color:#a98543">80</strong><span style="font-size:12px;color:#69777b">موضعاً لعرض الصور</span></div>
+    <div><strong style="display:block;font-size:clamp(26px,3vw,38px);color:#a98543">Syria</strong><span style="font-size:12px;color:#69777b">محور الاستثمار والتنمية</span></div>
+    <div><strong style="display:block;font-size:clamp(26px,3vw,38px);color:#a98543">Partnerships</strong><span style="font-size:12px;color:#69777b">شراكات وفرص تعاون</span></div>
+  </div>
 </section>
 
-<script>
-document.getElementById("create-invoice-btn").addEventListener("click", async function () {
-  const amount = Number(document.getElementById("invoice-amount").value);
-  const currency = document.getElementById("invoice-currency").value;
-  const description = document.getElementById("invoice-description").value.trim();
-  const status = document.getElementById("invoice-status");
-  const link = document.getElementById("invoice-payment-link");
-
-  link.hidden = true;
-  if (!Number.isFinite(amount) || amount <= 0 || !description) {
-    status.textContent = "أدخل مبلغًا صحيحًا ووصفًا للفاتورة.";
-    return;
-  }
-
-  this.disabled = true;
-  status.textContent = "جارٍ إنشاء الفاتورة...";
-  try {
-    const response = await fetch(
-      "https://omax-api-105a.oa626114.workers.dev/create-invoice",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount, currency, description })
-      }
-    );
-    const data = await response.json();
-    const paymentUrl = data.invoice_url || data.payment_url || data.url;
-
-    if (!response.ok || data.success === false || !paymentUrl) {
-      throw new Error(data.error || "تعذر إنشاء الفاتورة. تحقق من إعدادات API.");
-    }
-
-    link.href = paymentUrl;
-    link.hidden = false;
-    status.textContent = "تم إنشاء الفاتورة. اضغط على رابط الدفع للمتابعة.";
-  } catch (error) {
-    status.textContent = "لم يكتمل الطلب: " + error.message;
-  } finally {
-    this.disabled = false;
-  }
-});
-</script>
-</body>
-</html>
-
+<main class="wrap"><section class="intro" id="index"><div class="eyebrow">فهرس المشاريع</div><h2>اختر المحفظة للدخول إلى الصور والتفاصيل</h2><div class="index"><a href="#portfolio-1">الطرق والجسور والبنية التحتية<small>10 صور ومعلومات</small></a><a href="#portfolio-2">العقارات والإنشاءات والمشاريع السكنية<small>10 صور ومعلومات</small></a><a href="#portfolio-3">الطاقة البحرية والتيارات البحرية<small>10 صور ومعلومات</small></a><a href="#portfolio-4">الطاقة النظيفة والمتجددة<small>10 صور ومعلومات</small></a><a href="#portfolio-5">الزراعة والمزارع والإنتاج النباتي<small>10 صور ومعلومات</small></a><a href="#portfolio-6">الثروة الحيوانية والمزارع<small>10 صور ومعلومات</small></a><a href="#portfolio-7">الثروة السمكية والاستزراع المائي<small>10 صور ومعلومات</small></a><a href="#portfolio-8">التصنيع الغذائي والتبريد والتخزين<small>10 صور ومعلومات</small></a></div></section><section class="vision" id="vision"><div class="eyebrow">رؤيتنا | Our Vision</div><h2>INVESTMENT • RECONSTRUCTION • SUSTAINABLE DEVELOPMENT</h2><p>آفاق سوريا تسعى إلى المساهمة في تطوير الاستثمار العقاري والإنشاءات والبنية التحتية والقطاعات الإنتاجية في مختلف أنحاء سوريا، من خلال دراسة الفرص وبناء الشراكات وتطوير مشاريع متكاملة تراعي الجودة والاستدامة واحتياجات المجتمعات.</p></section><section class="portfolio" id="portfolio-1"><div class="portfolio-title"><span>محفظة 01</span><div><h2>الطرق والجسور والبنية التحتية</h2><p>ROADS, BRIDGES & INFRASTRUCTURE</p></div><em>10 صور</em></div><p class="description">تشمل هذه المحفظة مشاريع الطرق السريعة والجسور والأنفاق وشبكات النقل وتصريف مياه الأمطار وأعمال البنية التحتية المرتبطة بها، مع عرض صور توضيحية لكل مجال.</p><div class="photo-grid"><button class="photo-card" type="button" data-image="images/photo-01.jpg" data-caption="طرق سريعة"><img src="images/photo-01.jpg" alt="طرق سريعة" loading="lazy"><span><b>01 · طرق سريعة</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-02.jpg" data-caption="جسر حديث"><img src="images/photo-02.jpg" alt="جسر حديث" loading="lazy"><span><b>02 · جسر حديث</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-03.jpg" data-caption="أعمال إنشاء طريق"><img src="images/photo-03.jpg" alt="أعمال إنشاء طريق" loading="lazy"><span><b>03 · أعمال إنشاء طريق</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-04.jpg" data-caption="أنفاق وممرات"><img src="images/photo-04.jpg" alt="أنفاق وممرات" loading="lazy"><span><b>04 · أنفاق وممرات</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-05.jpg" data-caption="جسر فوق المياه"><img src="images/photo-05.jpg" alt="جسر فوق المياه" loading="lazy"><span><b>05 · جسر فوق المياه</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-06.jpg" data-caption="شبكات النقل"><img src="images/photo-06.jpg" alt="شبكات النقل" loading="lazy"><span><b>06 · شبكات النقل</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-07.jpg" data-caption="أعمال بنية تحتية"><img src="images/photo-07.jpg" alt="أعمال بنية تحتية" loading="lazy"><span><b>07 · أعمال بنية تحتية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-08.jpg" data-caption="معدات إنشاء الطرق"><img src="images/photo-08.jpg" alt="معدات إنشاء الطرق" loading="lazy"><span><b>08 · معدات إنشاء الطرق</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-09.jpg" data-caption="جسور حضرية"><img src="images/photo-09.jpg" alt="جسور حضرية" loading="lazy"><span><b>09 · جسور حضرية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-10.jpg" data-caption="تطوير الطرق"><img src="images/photo-10.jpg" alt="تطوير الطرق" loading="lazy"><span><b>10 · تطوير الطرق</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button></div></section><section class="portfolio" id="portfolio-2"><div class="portfolio-title"><span>محفظة 02</span><div><h2>العقارات والإنشاءات والمشاريع السكنية</h2><p>REAL ESTATE & CONSTRUCTION</p></div><em>10 صور</em></div><p class="description">تعرض هذه المحفظة نماذج الأبراج والمجمعات السكنية والمباني التجارية والفنادق والمكاتب وأعمال البناء والتشطيبات والتخطيط العمراني.</p><div class="photo-grid"><button class="photo-card" type="button" data-image="images/photo-11.jpg" data-caption="أبراج سكنية"><img src="images/photo-11.jpg" alt="أبراج سكنية" loading="lazy"><span><b>01 · أبراج سكنية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-12.jpg" data-caption="تصميم معماري حديث"><img src="images/photo-12.jpg" alt="تصميم معماري حديث" loading="lazy"><span><b>02 · تصميم معماري حديث</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-13.jpg" data-caption="مجمع سكني"><img src="images/photo-13.jpg" alt="مجمع سكني" loading="lazy"><span><b>03 · مجمع سكني</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-14.jpg" data-caption="مبانٍ متعددة الاستخدامات"><img src="images/photo-14.jpg" alt="مبانٍ متعددة الاستخدامات" loading="lazy"><span><b>04 · مبانٍ متعددة الاستخدامات</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-15.jpg" data-caption="حدائق ومسطحات خضراء"><img src="images/photo-15.jpg" alt="حدائق ومسطحات خضراء" loading="lazy"><span><b>05 · حدائق ومسطحات خضراء</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-16.jpg" data-caption="ملاعب ومرافق رياضية"><img src="images/photo-16.jpg" alt="ملاعب ومرافق رياضية" loading="lazy"><span><b>06 · ملاعب ومرافق رياضية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-17.jpg" data-caption="موقع بناء"><img src="images/photo-17.jpg" alt="موقع بناء" loading="lazy"><span><b>07 · موقع بناء</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-18.jpg" data-caption="رافعات وآليات إنشائية"><img src="images/photo-18.jpg" alt="رافعات وآليات إنشائية" loading="lazy"><span><b>08 · رافعات وآليات إنشائية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-19.jpg" data-caption="تصميم واجهات"><img src="images/photo-19.jpg" alt="تصميم واجهات" loading="lazy"><span><b>09 · تصميم واجهات</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-20.jpg" data-caption="تخطيط عمراني"><img src="images/photo-20.jpg" alt="تخطيط عمراني" loading="lazy"><span><b>10 · تخطيط عمراني</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button></div></section><section class="portfolio" id="portfolio-3"><div class="portfolio-title"><span>محفظة 03</span><div><h2>الطاقة البحرية والتيارات البحرية</h2><p>MARINE & TIDAL ENERGY</p></div><em>10 صور</em></div><p class="description">تستعرض هذه المحفظة فرص الاستفادة من طاقة الأمواج والتيارات البحرية والمد والجزر، إضافة إلى المنشآت والمعدات البحرية الداعمة لتوليد الطاقة.</p><div class="photo-grid"><button class="photo-card" type="button" data-image="images/photo-21.jpg" data-caption="توربينات تيارات بحرية"><img src="images/photo-21.jpg" alt="توربينات تيارات بحرية" loading="lazy"><span><b>01 · توربينات تيارات بحرية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-22.jpg" data-caption="مياه بحرية عميقة"><img src="images/photo-22.jpg" alt="مياه بحرية عميقة" loading="lazy"><span><b>02 · مياه بحرية عميقة</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-23.jpg" data-caption="توربينات تحت الماء"><img src="images/photo-23.jpg" alt="توربينات تحت الماء" loading="lazy"><span><b>03 · توربينات تحت الماء</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-24.jpg" data-caption="منشأة بحرية"><img src="images/photo-24.jpg" alt="منشأة بحرية" loading="lazy"><span><b>04 · منشأة بحرية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-25.jpg" data-caption="أمواج البحر"><img src="images/photo-25.jpg" alt="أمواج البحر" loading="lazy"><span><b>05 · أمواج البحر</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-26.jpg" data-caption="معدات بحرية"><img src="images/photo-26.jpg" alt="معدات بحرية" loading="lazy"><span><b>06 · معدات بحرية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-27.jpg" data-caption="طاقة المد والجزر"><img src="images/photo-27.jpg" alt="طاقة المد والجزر" loading="lazy"><span><b>07 · طاقة المد والجزر</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-28.jpg" data-caption="ساحل وبحر"><img src="images/photo-28.jpg" alt="ساحل وبحر" loading="lazy"><span><b>08 · ساحل وبحر</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-29.jpg" data-caption="هندسة بحرية"><img src="images/photo-29.jpg" alt="هندسة بحرية" loading="lazy"><span><b>09 · هندسة بحرية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-30.jpg" data-caption="توربينات ومياه"><img src="images/photo-30.jpg" alt="توربينات ومياه" loading="lazy"><span><b>10 · توربينات ومياه</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button></div></section><section class="portfolio" id="portfolio-4"><div class="portfolio-title"><span>محفظة 04</span><div><h2>الطاقة النظيفة والمتجددة</h2><p>CLEAN & RENEWABLE ENERGY</p></div><em>10 صور</em></div><p class="description">تضم هذه المحفظة مشاريع الطاقة الشمسية وطاقة الرياح والطاقة الكهرومائية وحلول التخزين والشبكات، بهدف دعم إنتاج طاقة نظيفة ومستدامة.</p><div class="photo-grid"><button class="photo-card" type="button" data-image="images/photo-31.jpg" data-caption="ألواح شمسية"><img src="images/photo-31.jpg" alt="ألواح شمسية" loading="lazy"><span><b>01 · ألواح شمسية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-32.jpg" data-caption="مزرعة رياح"><img src="images/photo-32.jpg" alt="مزرعة رياح" loading="lazy"><span><b>02 · مزرعة رياح</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-33.jpg" data-caption="توربينات رياح"><img src="images/photo-33.jpg" alt="توربينات رياح" loading="lazy"><span><b>03 · توربينات رياح</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-34.jpg" data-caption="محطة طاقة شمسية"><img src="images/photo-34.jpg" alt="محطة طاقة شمسية" loading="lazy"><span><b>04 · محطة طاقة شمسية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-35.jpg" data-caption="طاقة شمسية على الأسطح"><img src="images/photo-35.jpg" alt="طاقة شمسية على الأسطح" loading="lazy"><span><b>05 · طاقة شمسية على الأسطح</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-36.jpg" data-caption="شبكات كهرباء"><img src="images/photo-36.jpg" alt="شبكات كهرباء" loading="lazy"><span><b>06 · شبكات كهرباء</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-37.jpg" data-caption="تخزين الطاقة"><img src="images/photo-37.jpg" alt="تخزين الطاقة" loading="lazy"><span><b>07 · تخزين الطاقة</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-38.jpg" data-caption="محطة طاقة متجددة"><img src="images/photo-38.jpg" alt="محطة طاقة متجددة" loading="lazy"><span><b>08 · محطة طاقة متجددة</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-39.jpg" data-caption="طاقة الرياح والحقول"><img src="images/photo-39.jpg" alt="طاقة الرياح والحقول" loading="lazy"><span><b>09 · طاقة الرياح والحقول</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-40.jpg" data-caption="حلول الطاقة المستدامة"><img src="images/photo-40.jpg" alt="حلول الطاقة المستدامة" loading="lazy"><span><b>10 · حلول الطاقة المستدامة</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button></div></section><section class="portfolio" id="portfolio-5"><div class="portfolio-title"><span>محفظة 05</span><div><h2>الزراعة والمزارع والإنتاج النباتي</h2><p>AGRICULTURE & FARMING</p></div><em>10 صور</em></div><p class="description">تغطي هذه المحفظة زراعة القمح والشعير والعدس والحمص والكمون واليانسون والكزبرة وغيرها، إلى جانب الحصاد والري والتخزين والتصنيع الزراعي.</p><div class="photo-grid"><button class="photo-card" type="button" data-image="images/photo-41.jpg" data-caption="حقول قمح"><img src="images/photo-41.jpg" alt="حقول قمح" loading="lazy"><span><b>01 · حقول قمح</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-42.jpg" data-caption="محاصيل زراعية"><img src="images/photo-42.jpg" alt="محاصيل زراعية" loading="lazy"><span><b>02 · محاصيل زراعية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-43.jpg" data-caption="حصاد زراعي"><img src="images/photo-43.jpg" alt="حصاد زراعي" loading="lazy"><span><b>03 · حصاد زراعي</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-44.jpg" data-caption="خضروات طازجة"><img src="images/photo-44.jpg" alt="خضروات طازجة" loading="lazy"><span><b>04 · خضروات طازجة</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-45.jpg" data-caption="بيوت محمية"><img src="images/photo-45.jpg" alt="بيوت محمية" loading="lazy"><span><b>05 · بيوت محمية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-46.jpg" data-caption="جرار زراعي"><img src="images/photo-46.jpg" alt="جرار زراعي" loading="lazy"><span><b>06 · جرار زراعي</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-47.jpg" data-caption="بساتين وأشجار"><img src="images/photo-47.jpg" alt="بساتين وأشجار" loading="lazy"><span><b>07 · بساتين وأشجار</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-48.jpg" data-caption="ري حديث"><img src="images/photo-48.jpg" alt="ري حديث" loading="lazy"><span><b>08 · ري حديث</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-49.jpg" data-caption="مزارع وحقول"><img src="images/photo-49.jpg" alt="مزارع وحقول" loading="lazy"><span><b>09 · مزارع وحقول</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-50.jpg" data-caption="منتجات زراعية"><img src="images/photo-50.jpg" alt="منتجات زراعية" loading="lazy"><span><b>10 · منتجات زراعية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button></div></section><section class="portfolio" id="portfolio-6"><div class="portfolio-title"><span>محفظة 06</span><div><h2>الثروة الحيوانية والمزارع</h2><p>LIVESTOCK & ANIMAL FARMS</p></div><em>10 صور</em></div><p class="description">تستعرض هذه المحفظة فرص تطوير مزارع الثروة الحيوانية في سوريا، بما يشمل الأبقار الحلوب واللحوم والخيول العربية الأصيلة والأغنام والماعز والدواجن، إضافة إلى الأعلاف والرعاية البيطرية وتجهيزات المزارع الملائمة للبيئة المحلية.</p><div class="photo-grid"><button class="photo-card" type="button" data-image="images/photo-51.jpg" data-caption="مزارع أبقار"><img src="images/photo-51.jpg" alt="مزارع أبقار" loading="lazy"><span><b>01 · مزارع أبقار</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-52.jpg" data-caption="أغنام ومراعي"><img src="images/photo-52.jpg" alt="أغنام ومراعي" loading="lazy"><span><b>02 · أغنام ومراعي</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-53.jpg" data-caption="ماعز في المزرعة"><img src="images/photo-53.jpg" alt="ماعز في المزرعة" loading="lazy"><span><b>03 · ماعز في المزرعة</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-54.jpg" data-caption="مداجن الدجاج"><img src="images/photo-54.jpg" alt="مداجن الدجاج" loading="lazy"><span><b>04 · مداجن الدجاج</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-55.jpg" data-caption="دجاج وبيض"><img src="images/photo-55.jpg" alt="دجاج وبيض" loading="lazy"><span><b>05 · دجاج وبيض</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-56.jpg" data-caption="مزارع خيول"><img src="images/photo-56.jpg" alt="مزارع خيول" loading="lazy"><span><b>06 · مزارع خيول</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-57.jpg" data-caption="خيول عربية أصيلة"><img src="images/photo-57.jpg" alt="خيول عربية أصيلة" loading="lazy"><span><b>07 · خيول عربية أصيلة</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-58.jpg" data-caption="مزارع أعلاف"><img src="images/photo-58.jpg" alt="مزارع أعلاف" loading="lazy"><span><b>08 · مزارع أعلاف</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-59.jpg" data-caption="رعاية بيطرية"><img src="images/photo-59.jpg" alt="رعاية بيطرية" loading="lazy"><span><b>09 · رعاية بيطرية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-60.jpg" data-caption="تجهيزات المزارع"><img src="images/photo-60.jpg" alt="تجهيزات المزارع" loading="lazy"><span><b>10 · تجهيزات المزارع</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button></div></section><section class="portfolio" id="portfolio-7"><div class="portfolio-title"><span>محفظة 07</span><div><h2>الثروة السمكية والاستزراع المائي</h2><p>FISHERIES & AQUACULTURE</p></div><em>10 صور</em></div><p class="description">تعرض هذه المحفظة مشاريع تربية الأسماك في الأحواض والأقفاص العائمة والمفرخات ومصانع الأعلاف والتبريد والتعبئة، مع الاهتمام بجودة المياه والاستدامة.</p><div class="photo-grid"><button class="photo-card" type="button" data-image="images/photo-61.jpg" data-caption="أسماك في المياه"><img src="images/photo-61.jpg" alt="أسماك في المياه" loading="lazy"><span><b>01 · أسماك في المياه</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-62.jpg" data-caption="استزراع سمكي"><img src="images/photo-62.jpg" alt="استزراع سمكي" loading="lazy"><span><b>02 · استزراع سمكي</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-63.jpg" data-caption="مزارع أسماك"><img src="images/photo-63.jpg" alt="مزارع أسماك" loading="lazy"><span><b>03 · مزارع أسماك</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-64.jpg" data-caption="صيد بحري"><img src="images/photo-64.jpg" alt="صيد بحري" loading="lazy"><span><b>04 · صيد بحري</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-65.jpg" data-caption="أسماك طازجة"><img src="images/photo-65.jpg" alt="أسماك طازجة" loading="lazy"><span><b>05 · أسماك طازجة</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-66.jpg" data-caption="أحواض تربية الأسماك"><img src="images/photo-66.jpg" alt="أحواض تربية الأسماك" loading="lazy"><span><b>06 · أحواض تربية الأسماك</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-67.jpg" data-caption="سواحل ومرافئ"><img src="images/photo-67.jpg" alt="سواحل ومرافئ" loading="lazy"><span><b>07 · سواحل ومرافئ</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-68.jpg" data-caption="تربية الأحياء المائية"><img src="images/photo-68.jpg" alt="تربية الأحياء المائية" loading="lazy"><span><b>08 · تربية الأحياء المائية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-69.jpg" data-caption="تنوع بحري"><img src="images/photo-69.jpg" alt="تنوع بحري" loading="lazy"><span><b>09 · تنوع بحري</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-70.jpg" data-caption="منتجات بحرية"><img src="images/photo-70.jpg" alt="منتجات بحرية" loading="lazy"><span><b>10 · منتجات بحرية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button></div></section><section class="portfolio" id="portfolio-8"><div class="portfolio-title"><span>محفظة 08</span><div><h2>التصنيع الغذائي والتبريد والتخزين</h2><p>PROCESSING, COLD STORAGE & LOGISTICS</p></div><em>10 صور</em></div><p class="description">تستعرض هذه المحفظة منشآت تصنيع الأغذية والألبان والحبوب والتعبئة والتغليف ومستودعات التبريد وسلاسل التخزين والنقل المبرد.</p><div class="photo-grid"><button class="photo-card" type="button" data-image="images/photo-71.jpg" data-caption="منشأة تصنيع غذائي"><img src="images/photo-71.jpg" alt="منشأة تصنيع غذائي" loading="lazy"><span><b>01 · منشأة تصنيع غذائي</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-72-placeholder.svg" data-caption="خط إنتاج صناعي"><img src="images/photo-72-placeholder.svg" alt="خط إنتاج صناعي" loading="lazy"><span><b>02 · خط إنتاج صناعي</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-73-placeholder.svg" data-caption="مستودعات تخزين"><img src="images/photo-73-placeholder.svg" alt="مستودعات تخزين" loading="lazy"><span><b>03 · مستودعات تخزين</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-74-placeholder.svg" data-caption="سلاسل تبريد"><img src="images/photo-74-placeholder.svg" alt="سلاسل تبريد" loading="lazy"><span><b>04 · سلاسل تبريد</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-75-placeholder.svg" data-caption="تعبئة وتغليف"><img src="images/photo-75-placeholder.svg" alt="تعبئة وتغليف" loading="lazy"><span><b>05 · تعبئة وتغليف</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-76-placeholder.svg" data-caption="معدات تصنيع"><img src="images/photo-76-placeholder.svg" alt="معدات تصنيع" loading="lazy"><span><b>06 · معدات تصنيع</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-77-placeholder.svg" data-caption="مستودع لوجستي"><img src="images/photo-77-placeholder.svg" alt="مستودع لوجستي" loading="lazy"><span><b>07 · مستودع لوجستي</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-78-placeholder.svg" data-caption="صناديق منتجات غذائية"><img src="images/photo-78-placeholder.svg" alt="صناديق منتجات غذائية" loading="lazy"><span><b>08 · صناديق منتجات غذائية</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-79-placeholder.svg" data-caption="نقل وتوزيع"><img src="images/photo-79-placeholder.svg" alt="نقل وتوزيع" loading="lazy"><span><b>09 · نقل وتوزيع</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button><button class="photo-card" type="button" data-image="images/photo-80-placeholder.svg" data-caption="مرافق التخزين والتبريد"><img src="images/photo-80-placeholder.svg" alt="مرافق التخزين والتبريد" loading="lazy"><span><b>10 · مرافق التخزين والتبريد</b><small>اضغط لمشاهدة الصورة بحجم كامل</small></span></button></div></section><section class="contact" id="contact"><h2>آفاق سوريا للاستثمار العقاري والبنية التحتية والتنمية</h2><p>AFAQ SYRIA — Real Estate Investment, Infrastructure & Development</p><p>عمر علي — الرئيس التنفيذي للمشاريع في سوريا والشرق الأوسط وجميع دول آسيا وأفريقيا</p><p>الهاتف: <a href="tel:+905523156980">+90 552 315 6980</a></p><p>البريد الإلكتروني: <a href="mailto:oali47438@gmail.com">oali47438@gmail.com</a></p><p>للتواصل بشأن فرص الاستثمار والشراكات والمشاريع التنموية.</p>
+<div class="contact-actions">
+<a class="primary" href="https://wa.me/905523156980" target="_blank" rel="noopener">تواصل عبر WhatsApp</a>
+<a href="tel:+905523156980">اتصال مباشر</a>
+<a href="mailto:oali47438@gmail.com">إرسال بريد إلكتروني</a>
+</div></section></main><footer>© 2026 AFAQ SYRIA. جميع الحقوق محفوظة.</footer><div class="modal" id="modal"><div class="modal-box"><button id="close" aria-label="إغلاق">×</button><img id="large" alt=""><p id="caption"></p></div></div><script>
+const menu=document.getElementById('menu'),links=document.getElementById('links');menu.setAttribute('aria-expanded','false');menu.onclick=()=>{const opened=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(opened));};links.querySelectorAll('a').forEach(a=>a.onclick=()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false')});const modal=document.getElementById('modal'),large=document.getElementById('large');document.querySelectorAll('.photo-card').forEach(card=>card.onclick=()=>{large.src=card.dataset.image;document.getElementById('caption').textContent=card.dataset.caption;modal.classList.add('open')});function closeModal(){modal.classList.remove('open');large.src=''}document.getElementById('close').onclick=closeModal;modal.onclick=e=>{if(e.target===modal)closeModal()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script></body></html>
