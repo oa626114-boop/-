@@ -509,7 +509,7 @@ function renderSectorImages(){
  document.querySelectorAll(".sector").forEach(section=>{
   const n=section.id.replace("sector-",""),gallery=section.querySelector(".sector-gallery"),tools=section.querySelector(".sector-owner-tools");
   if(!gallery)return;
-  const stored=Array.isArray(sectorImages[n])?sectorImages[n]:[];
+  const stored=Array.isArray(sectorImages[n])?sectorImages[n]:[];const removed=sectorImages._removed?.[n]||[];gallery.querySelectorAll(".project-card:not(.custom-sector-photo)").forEach(card=>{const src=card.dataset.src||"";card.hidden=removed.includes(src);if(ownerMode&&!card.querySelector(".owner-remove-photo")){const del=document.createElement("button");del.type="button";del.className="owner-remove-photo";del.textContent="إزالة الصورة";del.addEventListener("click",async ev=>{ev.stopPropagation();if(!confirm("إزالة هذه الصورة من حقيبة المحفظة؟"))return;sectorImages._removed=sectorImages._removed||{};sectorImages._removed[n]=[...(sectorImages._removed[n]||[]),src];try{await saveProjectRecords();renderSectorImages()}catch(err){alert(err.message)}});card.append(del)}});
   gallery.querySelectorAll(".custom-sector-photo").forEach(x=>x.remove());
   stored.forEach((file,index)=>{
    const card=document.createElement("button");card.type="button";card.className="project-card custom-sector-photo";card.dataset.src=file.data;card.dataset.caption=file.caption||file.name||"صورة مشروع";
