@@ -289,6 +289,14 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
 .sector-owner-tools .portfolio-delete-btn{background:#692f30;border-color:#c97b70;color:#fff}
 .project-detail .detail-back-btn{margin-inline-start:8px}
 
+
+.owner-access-section{margin:28px auto 18px}
+.owner-access-section .owner-access{max-width:760px;margin:0 auto}
+.owner-access-section .owner-login-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
+.owner-access-section .owner-login-form button{grid-column:1/-1}
+.owner-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 18px;border:1px solid #d8b56b88;border-radius:12px;background:#103746;color:#f0dba9}
+@media(max-width:600px){.owner-access-section .owner-login-form{grid-template-columns:1fr}.owner-access-section .owner-login-form button{grid-column:auto}}
+
 </style></head>
 <body>
 <header class="site-header"><div class="container nav">
@@ -338,6 +346,19 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
  <div id="governorateGrid" class="governorate-grid"><div class="directory-loading">جارٍ تحميل حقائب المحافظات...</div></div>
  <p class="data-credit">الدليل الإداري: OpenSyria Data Geography، الإصدار v0.1.5. يشمل 14 محافظة و62 منطقة و272 ناحية، وتُحمّل أسماء التجمعات السكانية عند فتح الناحية. <a href="https://opensyria.org/datasets/geography" target="_blank" rel="noopener">مصدر البيانات وتفاصيلها</a>.</p>
 </section>
+<section class="container owner-access-section" aria-label="إدارة المحافظ الاستثمارية">
+ <div class="owner-access" id="ownerAccess">
+  <h3>دخول مالك آفاق سوريا لإدارة المحافظ</h3>
+  <p>هذه الواجهة مخصصة لمالك المنصة فقط. بعد التحقق من الحساب ستظهر أزرار إضافة الصور وإزالتها داخل كل محفظة.</p>
+  <form id="ownerLoginForm" class="owner-login-form">
+   <label>البريد الإلكتروني<input name="login" type="email" autocomplete="username" required></label>
+   <label>كلمة المرور<input name="password" type="password" autocomplete="current-password" required></label>
+   <button class="ops-submit" type="submit">دخول المالك</button>
+  </form>
+  <p id="ownerLoginStatus" role="status"></p>
+ </div>
+ <div id="ownerToolbar" class="owner-toolbar" hidden><span id="ownerWelcome">وضع إدارة المالك</span><button type="button" class="ops-submit" id="ownerLogout">تسجيل الخروج</button></div>
+</section>
 <section class="container section" id="sectors"><div class="section-intro"><span class="eyebrow">القطاعات الاستثمارية</span><h2>محافظ متخصصة، ورؤية تنموية متكاملة</h2><p>استكشف المجالات التي تعرضها آفاق سوريا، وانتقل مباشرة إلى المحفظة التي تهمك.</p></div>
 <div class="sector-index">
 <a class="index-card" href="#sector-1"><span class="index-top"><span>محفظة 01</span><span>↙</span></span><b>الطرق والجسور والبنية التحتية</b><small>10 صور توضيحية</small></a><a class="index-card" href="#sector-2"><span class="index-top"><span>محفظة 02</span><span>↙</span></span><b>العقارات والإنشاءات والمشاريع السكنية</b><small>10 صور توضيحية</small></a><a class="index-card" href="#sector-3"><span class="index-top"><span>محفظة 03</span><span>↙</span></span><b>الطاقة البحرية والتيارات البحرية</b><small>10 صور توضيحية</small></a><a class="index-card" href="#sector-4"><span class="index-top"><span>محفظة 04</span><span>↙</span></span><b>الطاقة النظيفة والمتجددة</b><small>10 صور توضيحية</small></a><a class="index-card" href="#sector-5"><span class="index-top"><span>محفظة 05</span><span>↙</span></span><b>الزراعة والمزارع والإنتاج النباتي</b><small>10 صور توضيحية</small></a><a class="index-card" href="#sector-6"><span class="index-top"><span>محفظة 06</span><span>↙</span></span><b>الثروة الحيوانية والمزارع</b><small>10 صور توضيحية</small></a><a class="index-card" href="#sector-7"><span class="index-top"><span>محفظة 07</span><span>↙</span></span><b>الثروة السمكية والاستزراع المائي</b><small>10 صور توضيحية</small></a><a class="index-card" href="#sector-8"><span class="index-top"><span>محفظة 08</span><span>↙</span></span><b>التصنيع الغذائي والتبريد والتخزين</b><small>1 صورة متاحة</small></a>
@@ -362,17 +383,6 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
 </section>
 <section class="container project-manager" id="projects" hidden>
  <div class="project-heading"><div><span class="eyebrow">AFAQ SYRIA · PROJECT PORTFOLIOS</span><h2>حقائب المشاريع الاستثمارية</h2><p>اختر القطاع لعرض المشاريع التابعة له. لكل مشروع حقيبة مستقلة تضم الصور والملفات والوصف والموقع والحالة.</p></div><div class="project-heading-actions"><button type="button" class="directory-close" id="closeProjects">← رجوع</button><button type="button" class="primary-btn" id="showProjectForm" hidden>＋ إضافة مشروع جديد</button></div></div><div class="project-filters"><input id="projectSearch" type="search" placeholder="ابحث باسم المشروع أو المدينة..." aria-label="البحث في المشاريع"><select id="projectSectorFilter" aria-label="تصفية المشاريع حسب القطاع"><option value="">جميع القطاعات</option><option>البنية التحتية</option><option>العقارات والإنشاءات</option><option>الطاقة المتجددة</option><option>الزراعة</option><option>الثروة الحيوانية</option><option>الثروة السمكية</option><option>التصنيع الغذائي</option><option>السياحة</option><option>الصناعة</option><option>أخرى</option></select></div><p id="projectCount" class="project-count" aria-live="polite">حقائب المشاريع</p>
- <div class="owner-access" id="ownerAccess">
-  <h3>دخول مالك المنصة لإدارة المشاريع</h3>
-  <p>إضافة المشاريع والصور وحذفها متاحة بعد التحقق من حساب المالك.</p>
-  <form id="ownerLoginForm" class="owner-login-form">
-   <label>البريد الإلكتروني<input name="login" type="email" autocomplete="username" required></label>
-   <label>كلمة المرور<input name="password" type="password" autocomplete="current-password" required></label>
-   <button class="ops-submit" type="submit">دخول المالك</button>
-  </form>
-  <p id="ownerLoginStatus" role="status"></p>
- </div>
- <div id="ownerToolbar" class="owner-toolbar" hidden><span id="ownerWelcome">وضع إدارة المالك</span><button type="button" class="ops-submit" id="ownerLogout">تسجيل الخروج</button></div>
  <div id="projectGrid" class="project-grid-folders">
   <article class="project-folder" data-demo="true" data-sector="البنية التحتية"><div class="folder-tab">PRJ-001</div><img src="photo-01.jpg" alt="مشروع بنية تحتية" loading="lazy"><div class="folder-body"><span class="demo-label">نموذج توضيحي</span><h3>مشروع بنية تحتية</h3><p>حقيبة نموذجية لعرض ملفات وصور المشروع.</p><button type="button" class="folder-open" data-open-demo="PRJ-001">فتح حقيبة المشروع</button></div></article>
   <article class="project-folder" data-demo="true" data-sector="العقارات والإنشاءات"><div class="folder-tab">PRJ-002</div><img src="photo-11.jpg" alt="مشروع عقاري" loading="lazy"><div class="folder-body"><span class="demo-label">نموذج توضيحي</span><h3>مشروع عقاري</h3><p>حقيبة نموذجية لعرض ملفات وصور المشروع.</p><button type="button" class="folder-open" data-open-demo="PRJ-002">فتح حقيبة المشروع</button></div></article>
