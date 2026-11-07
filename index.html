@@ -278,7 +278,7 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
 .process-step-link{display:block;text-decoration:none;color:inherit;cursor:pointer;transition:border-color .2s,transform .2s}
 .process-step-link:hover,.process-step-link:focus-visible{border-color:var(--gold2);transform:translateY(-2px);outline:none}
 #actionRequestForm .directory-close{margin-inline-start:10px}
-#actionRequestStatus{color:var(--gold2);font-size:12px}
+#actionRequestStatus{color:var(--gold2);font-size:12px}.request-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.request-actions #actionRequestStatus{flex-basis:100%;margin:4px 0 0}.ops-heading #closeActionRequest{margin-top:12px}
 
 
 [hidden]{display:none!important}
@@ -416,7 +416,7 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
 
 
 <section class="container ops-section" id="actionRequest" hidden>
- <div class="ops-heading"><span class="eyebrow">AFAQ SYRIA · REQUEST CENTER</span><h2 id="actionRequestTitle">إرسال طلب إلى فريق آفاق سوريا</h2><p>املأ بياناتك وتفاصيل الطلب، ثم أرسلها مباشرة إلى فريقنا عبر WhatsApp.</p></div>
+ <div class="ops-heading"><span class="eyebrow">AFAQ SYRIA · REQUEST CENTER</span><h2 id="actionRequestTitle">إرسال طلب إلى فريق آفاق سوريا</h2><p>املأ بياناتك وتفاصيل الطلب، ثم أرسلها مباشرة إلى فريقنا عبر WhatsApp.</p><button class="directory-close" type="button" id="closeActionRequest">إغلاق الصفحة ×</button></div>
  <form class="ops-panel ops-form" id="actionRequestForm">
   <label>نوع الطلب<input id="requestKind" name="نوع الطلب" readonly required></label>
   <label>اسمك الكامل<input name="الاسم" autocomplete="name" required></label>
@@ -425,7 +425,7 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
   <label>اسم المشروع أو الصفقة<input name="المشروع أو الصفقة" id="requestProject"></label>
   <label>القطاع<select name="القطاع"><option>العقارات والإنشاءات</option><option>الطرق والبنية التحتية</option><option>الطاقة</option><option>الزراعة</option><option>الصناعة</option><option>أخرى</option></select></label>
   <label class="wide">تفاصيل الطلب<textarea name="التفاصيل" rows="4" required placeholder="اكتب وصفاً واضحاً لما تحتاجه..."></textarea></label>
-  <div class="wide"><button class="ops-submit" type="submit">إرسال الطلب عبر WhatsApp</button><button class="directory-close" type="button" id="cancelActionRequest">إلغاء</button><p id="actionRequestStatus" role="status"></p></div>
+  <div class="wide request-actions"><button class="ops-submit" type="submit">إرسال الطلب</button><button class="directory-close" type="button" id="cancelActionRequest">إلغاء الطلب</button><p id="actionRequestStatus" role="status">سيتم فتح WhatsApp لمراجعة الطلب وإرساله.</p></div>
  </form>
 </section>
 
@@ -640,7 +640,7 @@ budgetForm.addEventListener("submit",event=>{event.preventDefault();const cap=Ma
 function openRequest(kind,project=""){const panel=document.getElementById("actionRequest");panel.hidden=false;document.getElementById("requestKind").value=kind;document.getElementById("actionRequestTitle").textContent=kind;document.getElementById("requestProject").value=project;panel.scrollIntoView({behavior:"smooth",block:"start"});document.querySelector("#actionRequestForm [name='الاسم']").focus()}
 document.addEventListener("click",event=>{const stage=event.target.closest("[data-workflow-kind]");if(stage){event.preventDefault();openRequest("متابعة الصفقة: "+stage.dataset.workflowKind,"متابعة الصفقة");return}const projectLink=event.target.closest("a[data-open-projects]");if(projectLink){event.preventDefault();openProjects();return}});
 document.addEventListener("click",event=>{const request=event.target.closest("[data-request-kind]");if(request){event.preventDefault();const card=request.closest(".deal-card");const project=card?.querySelector("h3")?.textContent||request.dataset.project||"";openRequest(request.dataset.requestKind,project)}});
-document.getElementById("cancelActionRequest").addEventListener("click",()=>{document.getElementById("actionRequest").hidden=true});
+const requestPanel=document.getElementById("actionRequest"),requestForm=document.getElementById("actionRequestForm");const closeRequestPanel=()=>{requestPanel.hidden=true;};document.getElementById("closeActionRequest").addEventListener("click",closeRequestPanel);document.getElementById("cancelActionRequest").addEventListener("click",()=>{requestForm.reset();document.getElementById("actionRequestStatus").textContent="تم إلغاء الطلب ومسح البيانات المدخلة.";closeRequestPanel();});
 document.getElementById("actionRequestForm").addEventListener("submit",event=>{event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;const data=new FormData(form);const lines=[...data.entries()].map(([k,v])=>k+": "+String(v).trim());const msg="طلب جديد إلى آفاق سوريا\n"+lines.join("\n");window.open("https://wa.me/905523156980?text="+encodeURIComponent(msg),"_blank","noopener");document.getElementById("actionRequestStatus").textContent="تم تجهيز الطلب في WhatsApp. اضغط إرسال داخل WhatsApp لإتمام الإرسال."});
 document.querySelectorAll(".mail-form").forEach(form=>form.addEventListener("submit",event=>{event.preventDefault();if(!form.reportValidity())return;const data=new FormData(form),lines=[...data.entries()].map(([k,v])=>k+": "+String(v).trim());const msg="طلب إلى آفاق سوريا – "+(form.dataset.subject||"استفسار")+"\n"+lines.join("\n");window.open("https://wa.me/905523156980?text="+encodeURIComponent(msg),"_blank","noopener") }));
 document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener("click",event=>{
