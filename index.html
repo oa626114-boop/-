@@ -406,9 +406,8 @@ function closeGovernorates(){directorySection.hidden=true;document.getElementByI
 const workspaceToggle=document.getElementById("workspaceToggle"),workspaceMenu=document.getElementById("workspaceMenu");
 function closeWorkspace(){workspaceMenu.hidden=true;workspaceToggle.setAttribute("aria-expanded","false")}
 workspaceToggle.addEventListener("click",()=>{const opening=workspaceMenu.hidden;workspaceMenu.hidden=!opening;workspaceToggle.setAttribute("aria-expanded",String(opening))});
-workspaceMenu.addEventListener("click",e=>{const link=e.target.closest("a");if(!link)return;closeWorkspace();if(link.dataset.openDirectory){openGovernorates();e.preventDefault()}});
+workspaceMenu.addEventListener("click",e=>{const link=e.target.closest("a");if(!link)return;closeWorkspace();if(link.dataset.openDirectory){openGovernorates();nav.classList.remove("open");menu.setAttribute("aria-expanded","false");e.preventDefault()}});
 document.addEventListener("click",e=>{if(!e.target.closest(".nav-workspace"))closeWorkspace()});
-document.getElementById("openGovernorates").addEventListener("click",openGovernorates);
 document.getElementById("closeGovernorates").addEventListener("click",closeGovernorates);
 
 let adminData=null;
