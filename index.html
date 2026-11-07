@@ -199,6 +199,15 @@ h1{font-size:clamp(36px,5.6vw,66px);line-height:1.3;margin:24px 0 18px;color:var
 @media(max-width:720px){.landmarks{grid-template-columns:1fr;gap:10px}.landmark-card{height:160px}.governorate-grid{grid-template-columns:1fr}.directory-tools{align-items:stretch;flex-direction:column}.project-grid-folders{grid-template-columns:repeat(2,minmax(0,1fr))}.project-form-grid{grid-template-columns:1fr}.project-form .wide{grid-column:auto}.project-detail-images{grid-template-columns:repeat(2,1fr)}.nav-links{max-width:none}}
 @media(max-width:390px){.project-grid-folders{grid-template-columns:1fr}}
 
+
+/* Hero uses the three requested Damascus landmarks as its visual center */
+.hero{min-height:auto;padding:42px 0 30px;background:radial-gradient(ellipse at 50% 0,#17495a 0%,#0b2633 55%,#071f2a 100%)}
+.hero:before{display:none}
+.hero-content{padding:25px 0 28px;max-width:900px}
+.hero .landmarks{margin:12px auto 0}
+.hero .landmark-card{height:220px}
+@media(max-width:720px){.hero{padding:28px 0 22px}.hero .landmark-card{height:170px}}
+
 </style></head>
 <body>
 <header class="site-header"><div class="container nav">
@@ -209,18 +218,20 @@ h1{font-size:clamp(36px,5.6vw,66px);line-height:1.3;margin:24px 0 18px;color:var
 <a class="nav-cta" href="#contact">ناقش فرصة استثمارية ↗</a>
 </div></header>
 <main>
-<section class="hero" id="home"><div class="container"><div class="hero-content">
-<span class="kicker">رؤية استثمارية لمستقبل سوريا</span>
-<h1>من دمشق... نحو آفاق جديدة للاستثمار والتنمية في سوريا</h1>
-<p class="hero-copy">منصة لعرض المحافظ الاستثمارية والفرص والمشاريع في قطاعات البنية التحتية والعقارات والطاقة والزراعة والإنتاج، وبناء جسور التواصل مع الشركاء والمهتمين بالتنمية.</p>
-<div class="hero-actions"><a class="primary-btn" href="#governorates">استكشف المحافظات السورية ↓</a><a class="secondary-btn" href="#contact">تواصل مع فريق آفاق سوريا</a></div>
-<div class="hero-note">INVESTMENT · RECONSTRUCTION · INFRASTRUCTURE · SUSTAINABLE DEVELOPMENT</div>
-</div></div></section>
-<section class="container landmarks" aria-label="معالم دمشق">
- <article class="landmark-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Citadel_of_Damascus.jpg?width=1100" alt="قلعة دمشق" loading="lazy"><span>قلعة دمشق</span></article>
- <article class="landmark-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Umayyad_mosque.jpg?width=1100" alt="الجامع الأموي" loading="lazy"><span>الجامع الأموي</span></article>
- <article class="landmark-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Al-Hamidiyeh_souq%2C_Damascus%2C_Syria_-_2.jpg?width=1100" alt="سوق الحميدية" loading="lazy"><span>سوق الحميدية</span></article>
-</section>
+<section class="hero" id="home"><div class="container">
+ <div class="hero-content">
+  <span class="kicker">رؤية استثمارية لمستقبل سوريا</span>
+  <h1>من دمشق... نحو آفاق جديدة للاستثمار والتنمية في سوريا</h1>
+  <p class="hero-copy">منصة لعرض المحافظ الاستثمارية والفرص والمشاريع في قطاعات البنية التحتية والعقارات والطاقة والزراعة والإنتاج، وبناء جسور التواصل مع الشركاء والمهتمين بالتنمية.</p>
+  <div class="hero-actions"><a class="primary-btn" href="#governorates">استكشف المحافظات السورية ↓</a><a class="secondary-btn" href="#contact">تواصل مع فريق آفاق سوريا</a></div>
+  <div class="hero-note">INVESTMENT · RECONSTRUCTION · INFRASTRUCTURE · SUSTAINABLE DEVELOPMENT</div>
+ </div>
+ <div class="landmarks" aria-label="معالم دمشق">
+  <article class="landmark-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Citadel_of_Damascus.jpg?width=1100" alt="قلعة دمشق" loading="lazy"><span>قلعة دمشق</span></article>
+  <article class="landmark-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Umayyad_mosque.jpg?width=1100" alt="الجامع الأموي" loading="lazy"><span>الجامع الأموي</span></article>
+  <article class="landmark-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Al-Hamidiyeh_souq%2C_Damascus%2C_Syria_-_2.jpg?width=1100" alt="سوق الحميدية" loading="lazy"><span>سوق الحميدية</span></article>
+ </div>
+</div></section>
 <div class="container stats-wrap"><div class="stats">
 <div class="stat"><strong>08</strong><span>محافظ استثمارية</span></div><div class="stat"><strong>07</strong><span>قطاعات إنتاجية وتنموية</span></div><div class="stat"><strong>71</strong><span>صورة توضيحية متاحة</span></div><div class="stat"><strong>SYRIA</strong><span>محور الرؤية الاستثمارية</span></div>
 </div></div>
@@ -391,7 +402,7 @@ async function saveProject(project){const db=await projectDbPromise;return new P
 async function deleteProject(id){const db=await projectDbPromise;return new Promise((res,rej)=>{const r=db.transaction("projects","readwrite").objectStore("projects").delete(id);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
 function projectCard(p){const card=document.createElement("article");card.className="project-folder";card.dataset.userProject="1";const tab=document.createElement("div");tab.className="folder-tab";tab.textContent=p.id;const img=document.createElement("img");img.alt=p.name;img.src=p.files?.find(f=>f.type?.startsWith("image/"))?.url||"photo-01.jpg";const body=document.createElement("div");body.className="folder-body";const label=document.createElement("span");label.className="demo-label";label.textContent=p.status+" · "+(p.governorate||"");const title=document.createElement("h3");title.textContent=p.name;const desc=document.createElement("p");desc.textContent=p.description;const btn=document.createElement("button");btn.type="button";btn.className="folder-open";btn.textContent="فتح حقيبة المشروع";btn.addEventListener("click",()=>showProjectDetail(p));body.append(label,title,desc,btn);card.append(tab,img,body);projectGrid.append(card)}
 function showProjectDetail(p){projectDetail.hidden=false;projectDetail.innerHTML="";const title=document.createElement("h3");title.textContent=p.name+" · "+p.id;const meta=document.createElement("p");meta.textContent=[p.sector,p.governorate,p.city,p.status].filter(Boolean).join(" · ");const desc=document.createElement("p");desc.textContent=p.description||"";const gallery=document.createElement("div");gallery.className="project-detail-images";(p.files||[]).filter(f=>f.type?.startsWith("image/")).forEach(file=>{const im=document.createElement("img");im.src=file.url;im.alt=p.name;gallery.append(im)});const close=document.createElement("button");close.type="button";close.className="folder-open";close.textContent="إغلاق الحقيبة";close.addEventListener("click",()=>projectDetail.hidden=true);projectDetail.append(title,meta,desc,gallery);if(!p.demo){const del=document.createElement("button");del.type="button";del.className="project-delete";del.textContent="حذف المشروع من هذا الجهاز";del.addEventListener("click",async()=>{if(confirm("هل تريد حذف هذه الحقيبة من هذا الجهاز؟")){await deleteProject(p.id);await refreshProjects();projectDetail.hidden=true}});projectDetail.append(del)}projectDetail.append(close);projectDetail.scrollIntoView({behavior:"smooth",block:"start"})}
-async function refreshProjects(){document.querySelectorAll('[data-user-project="1"]').forEach(x=>x.remove());const items=await getProjects();items.forEach(projectCard)}
+async function refreshProjects(){document.querySelectorAll('[data-user-project="1"]').forEach(x=>x.remove());const items=await getProjects();items.forEach(p=>{p.files=(p.files||[]).map(file=>({...file,url:file.blob?URL.createObjectURL(file.blob):file.url}));projectCard(p)})}
 document.getElementById("showProjectForm").addEventListener("click",()=>{projectForm.hidden=!projectForm.hidden;projectForm.scrollIntoView({behavior:"smooth",block:"start"})});
 document.getElementById("closeProjectForm").addEventListener("click",()=>projectForm.hidden=true);
 projectForm.addEventListener("submit",async e=>{e.preventDefault();if(!projectForm.reportValidity())return;const data=new FormData(projectForm),files=[];for(const file of data.getAll("files")){if(file instanceof File&&file.size){if(file.size>8*1024*1024){projectStatus.textContent="حجم كل ملف يجب ألا يتجاوز 8 ميغابايت.";return}files.push({name:file.name,type:file.type,url:URL.createObjectURL(file),blob:file})}}const id="PRJ-"+Date.now().toString().slice(-7);const p={id,name:data.get("name"),sector:data.get("sector"),governorate:data.get("governorate"),city:data.get("city"),status:data.get("status"),description:data.get("description"),files,createdAt:new Date().toISOString()};try{await saveProject(p);projectCard(p);projectStatus.textContent="تم إنشاء الحقيبة وحفظها على هذا الجهاز.";projectForm.reset();projectForm.hidden=true}catch{projectStatus.textContent="تعذر الحفظ المحلي. قد لا يدعم المتصفح مساحة التخزين المطلوبة."}});
