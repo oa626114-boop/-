@@ -299,6 +299,23 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
 
 .workflow-button{display:block;width:100%;text-align:right;color:inherit;font:inherit;cursor:pointer;transition:border-color .2s,transform .2s}.workflow-button:hover,.workflow-button:focus-visible{border-color:var(--gold);transform:translateY(-2px);outline:2px solid #d8b56b55}.workflow-button small{display:block;margin-top:9px;color:var(--gold2);font-size:10px}
 .about-link{display:block;text-decoration:none;cursor:pointer;transition:border-color .2s,background .2s,transform .2s}.about-link:hover,.about-link:focus-visible{border-color:var(--gold);background:#d8b56b12;transform:translateY(-2px)}.about-link span{display:block;margin-top:8px;color:var(--gold2);font-size:10px}.workflow-button{appearance:none;border:1px solid var(--line);background:#174454;border-radius:11px;padding:14px;text-align:right}.workflow-button:active,.about-link:active{transform:scale(.985)}
+
+/* Unified, accessible service accordion and expanded company profile */
+.service-accordion{display:grid;gap:13px;padding:18px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#123b49,#0b2b38);box-shadow:0 14px 35px #0002}
+.service-accordion-item{padding:0;overflow:hidden;border-color:#d8b56b55;background:linear-gradient(145deg,#174453,#103440)}
+.service-accordion-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px 21px;border:0;background:transparent;color:var(--gold2);text-align:right;cursor:pointer}
+.service-accordion-trigger b{display:block;font-size:clamp(16px,2.2vw,20px);font-weight:700}
+.service-accordion-trigger small{display:block;margin-top:4px;color:var(--muted);font-size:12px;font-weight:400}
+.accordion-icon{flex:0 0 38px;width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--gold);border-radius:50%;font-size:24px;line-height:1;color:var(--gold2);transition:transform .2s,background .2s}
+.service-accordion-trigger[aria-expanded="true"] .accordion-icon{transform:rotate(45deg);background:#d8b56b18}
+.service-accordion-trigger:focus-visible{outline:2px solid var(--gold2);outline-offset:-4px;border-radius:12px}
+.service-accordion-content{padding:0 22px 23px;border-top:1px solid #d8b56b24}
+.service-accordion-content[hidden]{display:none!important}
+.service-accordion-content>p{color:var(--muted);font-size:13px;margin:14px 0}
+.contract-service-note{margin:15px 0;padding:14px 17px;border-radius:12px;background:#d8b56b10;color:var(--muted);font-size:12px}
+.contract-service-note b{color:var(--gold2);font-size:15px}.contract-service-note ul{margin:8px 0;padding-right:20px}.contract-service-note small{color:var(--gold2)}
+.about-expanded{align-items:start;gap:28px}.about-main h2{color:var(--gold2);font-size:clamp(26px,3.5vw,38px);line-height:1.5;margin:8px 0 18px}.about-main h3{color:var(--gold2);font-size:19px;margin:25px 0 7px}.about-main p,.about-goals li{color:var(--muted);font-size:14px;line-height:2.05}.about-goals{padding-right:22px}.about-goals li{margin:5px 0}.about-vision-line{margin-top:22px;padding:17px;border:1px solid var(--line);border-radius:14px;color:var(--gold2);background:#d8b56b0d;font-weight:700}
+@media(max-width:700px){.service-accordion{padding:10px;border-radius:17px}.service-accordion-trigger{padding:17px 14px}.service-accordion-content{padding:0 14px 18px}.about-expanded{display:block}.about-points{margin-top:22px}}
 </style></head>
 <body>
 <header class="site-header"><div class="container nav">
@@ -315,12 +332,12 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
   <a href="#projects" data-open-projects="1">أهم المشاريع الاستثمارية <small>قائمة المشاريع ثم صور وملفات كل مشروع</small></a>
   <a href="#deals">الصفقات الاستثمارية <small>الفرص وحالات المتابعة</small></a>
   <a href="#feasibility">دراسة الجدوى <small>تحليل المشروع والجدوى</small></a>
-  <a href="#budget">الميزانية <small>التكاليف والاحتياطي والتقديرات</small></a>
-  <a href="#contracts">العقود والاستثمار <small>طلبات العقود والاستثمار</small></a>
+  <a href="#budget" data-open-accordion="calculator">الميزانية والتخطيط <small>الحاسبة وطلب ميزانية المشروع</small></a>
+  <a href="#budget" data-open-accordion="contract">العقود والاستثمار <small>طلب مراجعة أو إعداد عقد</small></a>
   <a href="#tracking">المتابعة والتقارير <small>حالة الأعمال والتقارير</small></a>
  </div>
 </div>
-<a href="#about">عن آفاق سوريا</a><a href="#contact">تواصل معنا</a>
+<a href="#about">من نحن ورؤيتنا</a><a href="#contact">تواصل معنا</a>
 </nav>
 <a class="nav-cta" href="#contact">ناقش فرصة استثمارية ↗</a>
 </div></header>
@@ -430,39 +447,48 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
 </section>
 
 <section class="container ops-section" id="budget">
- <div class="ops-heading"><span class="eyebrow">PROJECT FINANCIAL PLANNING</span><h2>الميزانية والتخطيط المالي</h2><p>نموذج أولي لتجميع تقديرات المشروع وإعداد طلب ميزانية أولي. النتائج تقديرية ولا تمثل اعتماداً مالياً أو عرضاً ملزماً.</p></div>
- <div class="ops-grid">
-  <article class="ops-panel"><h3>حاسبة الميزانية التقديرية</h3><p>أدخل التكاليف الأولية والتشغيلية للحصول على إجمالي تقديري مبسط داخل المتصفح.</p>
-   <form id="budgetCalc" class="ops-form">
-    <label>تكاليف التأسيس<input id="capex" type="number" min="0" step="0.01" placeholder="0"></label>
-    <label>التكاليف التشغيلية السنوية<input id="opex" type="number" min="0" step="0.01" placeholder="0"></label>
-    <label>الاحتياطي للطوارئ (%)<input id="reserve" type="number" min="0" max="100" step="0.1" value="10"></label>
-    <label>العملة<select id="budgetCurrency"><option>USD</option><option>EUR</option><option>TRY</option><option>SYP</option></select></label>
-    <div class="wide"><button class="ops-submit" type="submit">احسب الميزانية التقديرية</button><div class="calc-result" id="budgetResult" aria-live="polite">أدخل القيم لعرض التقدير.</div></div>
-   </form>
+ <div class="ops-heading"><span class="eyebrow">PROJECT FINANCIAL PLANNING · INVESTMENT SERVICES</span><h2>خدمات الميزانية والعقود</h2><p>مساحة موحدة لخدمات التخطيط المالي وإعداد ميزانيات المشاريع وطلبات مراجعة العقود. اختر الخدمة لفتح نموذجها، وستُغلق الخدمة السابقة تلقائياً لتسهيل التصفح على الهاتف.</p></div>
+ <div class="service-accordion">
+  <article class="ops-panel service-accordion-item">
+   <button type="button" class="service-accordion-trigger" id="openBudgetCalculator" aria-expanded="false" aria-controls="budgetCalculatorContent"><span><b>حاسبة الميزانية التقديرية</b><small>احسب التكاليف التأسيسية والتشغيلية والاحتياطي</small></span><span class="accordion-icon" aria-hidden="true">＋</span></button>
+   <div class="service-accordion-content" id="budgetCalculatorContent" hidden>
+    <p>أدخل التكاليف الأولية والتشغيلية للحصول على إجمالي تقديري مبسط داخل المتصفح. النتائج تقديرية ولا تمثل اعتماداً مالياً أو عرضاً ملزماً.</p>
+    <form id="budgetCalc" class="ops-form">
+     <label>تكاليف التأسيس<input id="capex" type="number" min="0" step="0.01" placeholder="0"></label>
+     <label>التكاليف التشغيلية السنوية<input id="opex" type="number" min="0" step="0.01" placeholder="0"></label>
+     <label>الاحتياطي للطوارئ (%)<input id="reserve" type="number" min="0" max="100" step="0.1" value="10"></label>
+     <label>العملة<select id="budgetCurrency"><option>USD</option><option>EUR</option><option>TRY</option><option>SYP</option></select></label>
+     <div class="wide"><button class="ops-submit" type="submit">احسب الميزانية التقديرية</button><div class="calc-result" id="budgetResult" aria-live="polite">أدخل القيم لعرض التقدير.</div></div>
+    </form>
+   </div>
   </article>
-  <article class="ops-panel"><h3>طلب إعداد ميزانية مشروع</h3><p>أرسل وصف المشروع وبيانات التواصل ليتم مراجعة الطلب مبدئياً.</p>
-   <form class="ops-form mail-form" data-subject="طلب إعداد ميزانية مشروع">
-    <label>اسم مقدم الطلب<input name="الاسم" required></label><label>البريد الإلكتروني<input name="البريد" type="email" required></label>
-    <label>اسم المشروع<input name="المشروع" required></label><label>القطاع<input name="القطاع"></label>
-    <label class="wide">ملخص الميزانية المطلوبة<textarea name="التفاصيل" required></textarea></label>
-    <div class="wide"><button class="ops-submit">إرسال طلب الميزانية بالبريد</button></div>
-   </form>
+  <article class="ops-panel service-accordion-item">
+   <button type="button" class="service-accordion-trigger" id="openProjectBudgetRequest" aria-expanded="false" aria-controls="projectBudgetContent"><span><b>طلب إعداد ميزانية مشروع</b><small>أرسل بيانات المشروع واحتياجاته المالية للمراجعة الأولية</small></span><span class="accordion-icon" aria-hidden="true">＋</span></button>
+   <div class="service-accordion-content" id="projectBudgetContent" hidden>
+    <p>أرسل وصف المشروع وبيانات التواصل ليتم مراجعة الطلب مبدئياً والتواصل معك بشأن المعلومات المطلوبة.</p>
+    <form class="ops-form mail-form" data-subject="طلب إعداد ميزانية مشروع">
+     <label>اسم مقدم الطلب<input name="الاسم" required autocomplete="name"></label>
+     <label>البريد الإلكتروني<input name="البريد" type="email" required autocomplete="email"></label>
+     <label>اسم المشروع<input name="المشروع" required></label>
+     <label>القطاع<select name="القطاع"><option>البنية التحتية</option><option>العقارات والإسكان</option><option>الطاقة</option><option>الزراعة والإنتاج</option><option>الصناعة</option><option>التكنولوجيا</option><option>التعليم وتنمية القدرات</option><option>أخرى</option></select></label>
+     <label class="wide">ملخص الميزانية المطلوبة<textarea name="التفاصيل" rows="4" required placeholder="اشرح فكرة المشروع والتكاليف المتوقعة والميزانية المطلوبة..."></textarea></label>
+     <div class="wide"><button class="ops-submit" type="submit">إعداد طلب الميزانية وإرساله</button></div>
+    </form>
+   </div>
   </article>
- </div>
-</section>
-<section class="container ops-section" id="contracts">
- <div class="ops-heading"><span class="eyebrow">CONTRACTS & INVESTMENT</span><h2>العقود والاستثمار</h2><p>مسار لتنظيم طلبات العقود والشراكات الاستثمارية. لا يتم إنشاء عقد نهائي أو توقيعه إلكترونياً من هذه الصفحة.</p></div>
- <div class="ops-grid">
-  <article class="ops-panel"><h3>خدمات العقود</h3><ul><li>طلب مسودة عقد شراكة أو تعاون.</li><li>تحديد الأطراف ونطاق العمل والالتزامات.</li><li>تجميع المرفقات والمعلومات اللازمة للمراجعة.</li><li>إحالة الصيغة النهائية إلى مختص قانوني مرخص قبل التوقيع.</li></ul></article>
-  <article class="ops-panel"><h3>طلب مراجعة أو إعداد عقد</h3>
-   <form class="ops-form mail-form" data-subject="طلب عقد أو مراجعة اتفاقية">
-    <label>الاسم<input name="الاسم" required></label><label>البريد الإلكتروني<input name="البريد" type="email" required></label>
-    <label>نوع الطلب<select name="نوع الطلب"><option>عقد شراكة</option><option>اتفاقية تعاون</option><option>مذكرة تفاهم</option><option>مراجعة عقد قائم</option><option>طلب استثمار</option></select></label>
-    <label>اسم المشروع أو الصفقة<input name="المشروع"></label>
-    <label class="wide">ملخص الطلب<textarea name="التفاصيل" required></textarea></label>
-    <div class="wide"><button class="ops-submit">إعداد رسالة الطلب</button></div>
-   </form>
+  <article class="ops-panel service-accordion-item" id="contracts">
+   <button type="button" class="service-accordion-trigger" id="openContractRequest" aria-expanded="false" aria-controls="contractRequestContent"><span><b>طلب مراجعة أو إعداد عقد</b><small>طلبات الشراكة والتعاون ومراجعة الاتفاقيات</small></span><span class="accordion-icon" aria-hidden="true">＋</span></button>
+   <div class="service-accordion-content" id="contractRequestContent" hidden>
+    <div class="contract-service-note"><b>خدمات العقود والاستثمار</b><ul><li>طلب مسودة عقد شراكة أو تعاون.</li><li>تحديد الأطراف ونطاق العمل والالتزامات.</li><li>تجميع المعلومات اللازمة للمراجعة الأولية.</li><li>إحالة الصيغة النهائية إلى مختص قانوني مرخص قبل التوقيع.</li></ul><small>النموذج لا ينشئ عقداً نهائياً ولا يمثل استشارة قانونية أو توقيعاً إلكترونياً.</small></div>
+    <form class="ops-form mail-form" data-subject="طلب عقد أو مراجعة اتفاقية">
+     <label>الاسم<input name="الاسم" required autocomplete="name"></label>
+     <label>البريد الإلكتروني<input name="البريد" type="email" required autocomplete="email"></label>
+     <label>نوع الطلب<select name="نوع الطلب"><option>عقد شراكة</option><option>اتفاقية تعاون</option><option>مذكرة تفاهم</option><option>مراجعة عقد قائم</option><option>طلب استثمار</option></select></label>
+     <label>اسم المشروع أو الصفقة<input name="المشروع"></label>
+     <label class="wide">ملخص الطلب<textarea name="التفاصيل" rows="4" required placeholder="اذكر الأطراف وطبيعة الاتفاقية وما المطلوب مراجعته..."></textarea></label>
+     <div class="wide"><button class="ops-submit" type="submit">إعداد رسالة الطلب</button></div>
+    </form>
+   </div>
   </article>
  </div>
 </section>
@@ -472,8 +498,28 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
  <div class="notice-strip">حماية الأطراف: لا تُرسل أموالاً أو وثائق حساسة عبر نموذج البريد هذا. لا توجد حالياً بوابة دفع أو توقيع إلكتروني أو حسابات ملفات آمنة مفعّلة ضمن هذا القسم.</div>
 </section>
 
-<section class="container about" id="about"><div><span class="eyebrow">عن آفاق سوريا</span><h2>نربط الرؤية بالفرص</h2><p>آفاق سوريا مساحة لعرض مجالات الاستثمار والتنمية وإبراز المحافظ والمشاريع المقترحة في قطاعات متعددة. نؤمن بأهمية التخطيط والشراكات والعمل المتدرج لدعم مشاريع ذات قيمة اقتصادية وتنموية.</p><p>المعلومات والصور المعروضة تعريفية، وتخضع أي فرصة استثمارية للدراسة والتحقق والاتفاقات اللازمة بين الأطراف المعنية.</p></div>
-<div class="about-points"><a class="about-point about-link" href="#governorates">01 · عرض المحافظ والقطاعات <span>فتح المحافظ السورية ←</span></a><a class="about-point about-link" href="#projects" data-open-projects="1">02 · إبراز المشاريع والفرص <span>فتح حقيبة المشاريع ←</span></a><a class="about-point about-link" href="#contact">03 · التواصل مع الشركاء <span>الانتقال إلى التواصل ←</span></a><a class="about-point about-link" href="#feasibility">04 · دعم التنمية المستدامة <span>فتح دراسة الجدوى ←</span></a></div></section>
+<section class="container about about-expanded" id="about">
+ <div class="about-main">
+  <span class="eyebrow">WHO WE ARE · AFAQ SYRIA</span>
+  <h2>آفاق سوريا – رؤية للتطوير والاستثمار وإعادة الإعمار</h2>
+  <p>آفاق سوريا منصة استثمارية وتنموية تهدف إلى إبراز الفرص والمشاريع والمبادرات التي يمكن أن تسهم في دعم التعافي الاقتصادي والتنمية المستدامة في سوريا. نعمل على بناء مساحة تجمع أصحاب المشاريع والمستثمرين والشركات والخبراء وأصحاب الكفاءات، وتساعدهم على التعارف وتبادل المعلومات واستكشاف فرص التعاون.</p>
+  <p>ننظر إلى إعادة الإعمار بوصفها عملية شاملة لا تقتصر على ترميم المباني وإنشاء الطرق والمرافق، بل تشمل أيضاً تحديث أساليب العمل، ونقل المعرفة، وتنمية المهارات، والاستثمار في الإنسان والعقل والفكر، وتطوير المؤسسات والقطاعات الإنتاجية.</p>
+  <h3>رؤيتنا</h3><p>المساهمة في بناء بيئة سورية أكثر قدرة على جذب الاستثمار وتحويل الأفكار والخبرات إلى مبادرات ومشاريع قابلة للدراسة والتنفيذ، ضمن شراكات مسؤولة وشفافة.</p>
+  <h3>رسالتنا</h3><p>ربط الفرص برؤوس الأموال والخبرات، وتوفير مساحة منظمة لعرض المشاريع والمعلومات الأولية، وتشجيع التخطيط السليم والتعاون بين القطاع الخاص والكفاءات والجهات المعنية بالتنمية.</p>
+  <h3>أهدافنا الاستراتيجية</h3>
+  <ul class="about-goals"><li>التعريف بالفرص الاستثمارية والمشاريع التنموية في مختلف المحافظات السورية.</li><li>تشجيع إعادة الإعمار وتحديث البنية التحتية والمرافق والخدمات.</li><li>دعم الاستثمار العقاري والصناعي والزراعي وقطاعات الطاقة والإنتاج.</li><li>تعزيز الاستثمار الفكري والمعرفي وتطوير التعليم والتدريب والمهارات.</li><li>تسهيل التواصل الأولي بين المستثمرين وأصحاب المشاريع والشركاء المحتملين.</li><li>تشجيع الابتكار والتحول الرقمي والحلول التقنية التي تخدم التنمية.</li></ul>
+  <h3>مجالات العمل</h3><p>تشمل مجالات اهتمام آفاق سوريا البنية التحتية والإسكان والعقارات والطاقة التقليدية والمتجددة والزراعة والصناعات التحويلية والخدمات اللوجستية والتكنولوجيا والتعليم وتنمية القدرات، إضافة إلى دراسات الجدوى والتخطيط المالي وطلبات الشراكة والتعاون.</p>
+  <h3>الاستثمار في الإنسان قبل المكان</h3><p>نؤمن أن رأس المال البشري والمعرفة والخبرة عناصر أساسية لنجاح الإعمار. لذلك نولي أهمية للأفكار والمبادرات البحثية والتدريب المهني ونقل التكنولوجيا وبناء قدرات الشباب والكفاءات، إلى جانب المشاريع المادية والاقتصادية.</p>
+  <h3>منهجية العمل</h3><p>تبدأ المنصة بعرض المعلومات والتواصل الأولي، ثم يمكن دراسة كل فرصة من النواحي الفنية والمالية والقانونية والبيئية، والتحقق من الأطراف والبيانات، وتحديد الشركاء والاحتياجات والخطوات الممكنة. ولا يُعد نشر أي مشروع أو فرصة موافقة تمويلية أو ضماناً للعائد أو دعوة ملزمة للاستثمار.</p>
+  <div class="about-vision-line">من الفكرة إلى الدراسة، ومن المعرفة إلى التطوير، ومن الشراكة إلى التنمية المستدامة.</div>
+ </div>
+ <div class="about-points">
+  <a class="about-point about-link" href="#governorates">01 · المحافظات والفرص <span>استكشف المحافظات السورية ←</span></a>
+  <a class="about-point about-link" href="#projects" data-open-projects="1">02 · المشاريع الاستثمارية <span>استعرض حقائب المشاريع ←</span></a>
+  <a class="about-point about-link" href="#budget">03 · التخطيط والميزانيات <span>خدمات الميزانية والتخطيط ←</span></a>
+  <a class="about-point about-link" href="#contact">04 · الشراكات والتواصل <span>تواصل مع فريق آفاق سوريا ←</span></a>
+ </div>
+</section>
 <section class="container contact" id="contact"><span class="eyebrow">ابدأ التواصل</span><h2>هل ترغب بمناقشة فرصة أو شراكة؟</h2><p>يسعدنا استقبال استفساراتكم حول المحافظ الاستثمارية والمشاريع ومجالات التعاون.</p>
 <p>عمر علي · الرئيس التنفيذي للمشاريع في سوريا والشرق الأوسط وآسيا وأفريقيا</p>
 <div class="contact-links"><a class="primary" href="https://wa.me/905523156980" target="_blank" rel="noopener">تواصل عبر WhatsApp</a><a href="tel:+905523156980">+90 552 315 6980</a><a href="mailto:oali47438@gmail.com">oali47438@gmail.com</a></div>
@@ -497,12 +543,33 @@ servicePanels.forEach(panel=>{
   heading.append(close);
  }
 });
+const accordionMap={calculator:["openBudgetCalculator","budgetCalculatorContent"],projectBudget:["openProjectBudgetRequest","projectBudgetContent"],contract:["openContractRequest","contractRequestContent"]};
+function openServiceAccordion(which){
+ const selected=accordionMap[which];if(!selected)return;
+ Object.entries(accordionMap).forEach(([key,pair])=>{
+  const trigger=document.getElementById(pair[0]),content=document.getElementById(pair[1]),open=key===which;
+  trigger.setAttribute("aria-expanded",String(open));content.hidden=!open;
+ });
+}
+Object.entries(accordionMap).forEach(([key,pair])=>{
+ document.getElementById(pair[0]).addEventListener("click",()=>{
+  const trigger=document.getElementById(pair[0]),isOpen=trigger.getAttribute("aria-expanded")==="true";
+  if(isOpen){trigger.setAttribute("aria-expanded","false");document.getElementById(pair[1]).hidden=true;}
+  else openServiceAccordion(key);
+ });
+});
 document.addEventListener("click",event=>{
  const link=event.target.closest('a[href^="#"]');
  if(!link)return;
  const id=decodeURIComponent(link.getAttribute("href").slice(1));
- const panel=servicePanels.find(item=>item.id===id);
- if(panel){panel.hidden=false;requestAnimationFrame(()=>panel.scrollIntoView({behavior:"smooth",block:"start"}));}
+ const panelId=id==="contracts"?"budget":id;
+ const panel=servicePanels.find(item=>item.id===panelId);
+ if(panel){
+  panel.hidden=false;
+  const accordion=link.dataset.openAccordion||(id==="contracts"?"contract":id==="budget"?"calculator":null);
+  if(accordion)openServiceAccordion(accordion);
+  requestAnimationFrame(()=>panel.scrollIntoView({behavior:"smooth",block:"start"}));
+ }
 });
 
 const brandHomeButton=document.getElementById("brandHomeButton");
