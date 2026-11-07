@@ -208,13 +208,23 @@ h1{font-size:clamp(36px,5.6vw,66px);line-height:1.3;margin:24px 0 18px;color:var
 .hero .landmark-card{height:220px}
 @media(max-width:720px){.hero{padding:28px 0 22px}.hero .landmark-card{height:170px}}
 
+
+.nav-directory-button{border:1px solid #d8b56b88;background:linear-gradient(135deg,#d8b56b,#f0dba9);color:#092632;border-radius:999px;padding:9px 15px;font:inherit;font-weight:800;cursor:pointer;white-space:nowrap}
+.nav-directory-button:hover,.nav-directory-button:focus-visible{box-shadow:0 0 0 3px #d8b56b33;transform:translateY(-1px)}
+.directory-section[hidden]{display:none!important}
+.directory-section:not([hidden]){display:block;animation:directoryReveal .28s ease both}
+.directory-panel-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.directory-close{flex:none;border:1px solid #d8b56b88;background:#123b49;color:#f0dba9;border-radius:12px;padding:11px 16px;font:inherit;cursor:pointer}
+@keyframes directoryReveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:720px){.directory-panel-heading{align-items:center}.directory-close{padding:9px 12px;font-size:12px}.nav-directory-button{font-size:12px;padding:8px 10px}}
+
 </style></head>
 <body>
 <header class="site-header"><div class="container nav">
 <a class="brand" href="#home"><span class="brand-mark">آ</span><span>آفاق سوريا<small>AFAQ SYRIA · INVESTMENT & DEVELOPMENT</small></span></a>
 <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">القائمة ☰</button>
 <nav class="nav-links" id="navLinks">
-<a href="#home">الرئيسية</a><a href="#governorates">المحافظات</a><a href="#sectors">المحافظ الاستثمارية</a><a href="#projects">المشاريع</a><a href="#deals">الصفقات</a><a href="#feasibility">دراسة الجدوى</a><a href="#budget">الميزانية</a><a href="#contracts">العقود والاستثمار</a><a href="#tracking">المتابعة والتقارير</a><a href="#about">عن آفاق سوريا</a><a href="#contact">تواصل معنا</a></nav>
+<a href="#home">الرئيسية</a><button type="button" class="nav-directory-button" id="openGovernorates">المحافظات السورية</button><a href="#sectors">المحافظ الاستثمارية</a><a href="#projects">المشاريع</a><a href="#deals">الصفقات</a><a href="#feasibility">دراسة الجدوى</a><a href="#budget">الميزانية</a><a href="#contracts">العقود والاستثمار</a><a href="#tracking">المتابعة والتقارير</a><a href="#about">عن آفاق سوريا</a><a href="#contact">تواصل معنا</a></nav>
 <a class="nav-cta" href="#contact">ناقش فرصة استثمارية ↗</a>
 </div></header>
 <main>
@@ -223,7 +233,7 @@ h1{font-size:clamp(36px,5.6vw,66px);line-height:1.3;margin:24px 0 18px;color:var
   <span class="kicker">رؤية استثمارية لمستقبل سوريا</span>
   <h1>من دمشق... نحو آفاق جديدة للاستثمار والتنمية في سوريا</h1>
   <p class="hero-copy">منصة لعرض المحافظ الاستثمارية والفرص والمشاريع في قطاعات البنية التحتية والعقارات والطاقة والزراعة والإنتاج، وبناء جسور التواصل مع الشركاء والمهتمين بالتنمية.</p>
-  <div class="hero-actions"><a class="primary-btn" href="#governorates">استكشف المحافظات السورية ↓</a><a class="secondary-btn" href="#contact">تواصل مع فريق آفاق سوريا</a></div>
+  <div class="hero-actions"><a class="secondary-btn" href="#contact">تواصل مع فريق آفاق سوريا</a></div>
   <div class="hero-note">INVESTMENT · RECONSTRUCTION · INFRASTRUCTURE · SUSTAINABLE DEVELOPMENT</div>
  </div>
  <div class="landmarks" aria-label="معالم دمشق">
@@ -235,8 +245,8 @@ h1{font-size:clamp(36px,5.6vw,66px);line-height:1.3;margin:24px 0 18px;color:var
 <div class="container stats-wrap"><div class="stats">
 <div class="stat"><strong>08</strong><span>محافظ استثمارية</span></div><div class="stat"><strong>07</strong><span>قطاعات إنتاجية وتنموية</span></div><div class="stat"><strong>71</strong><span>صورة توضيحية متاحة</span></div><div class="stat"><strong>SYRIA</strong><span>محور الرؤية الاستثمارية</span></div>
 </div></div>
-<section class="container directory-section" id="governorates">
- <div class="section-intro"><span class="eyebrow">SYRIA · ADMINISTRATIVE DIRECTORY</span><h2>حقائب المحافظات السورية</h2><p>افتح حقيبة المحافظة للوصول إلى المناطق والنواحي، ثم استعرض المدن والبلدات والقرى التابعة لها. يتوفر البحث داخل الدليل.</p></div>
+<section class="container directory-section" id="governorates" hidden>
+ <div class="directory-panel-heading"><div class="section-intro"><span class="eyebrow">SYRIA · ADMINISTRATIVE DIRECTORY</span><h2>حقائب المحافظات السورية</h2><p>اختر المحافظة لفتح حقيبتها، ثم اختر المنطقة فالناحية لعرض المدن والبلدات والقرى التابعة لها.</p></div><button type="button" class="directory-close" id="closeGovernorates" aria-label="إغلاق المحافظات">إغلاق ✕</button></div>
  <div class="directory-tools"><input id="placeSearch" type="search" placeholder="ابحث عن محافظة أو مدينة أو بلدة أو قرية..." aria-label="البحث في دليل المحافظات"><span id="directoryCount">تحميل الدليل الإداري...</span></div>
  <div id="governorateGrid" class="governorate-grid"><div class="directory-loading">جارٍ تحميل حقائب المحافظات...</div></div>
  <p class="data-credit">الدليل الإداري: OpenSyria Data Geography، الإصدار v0.1.5. يشمل 14 محافظة و62 منطقة و272 ناحية، وتُحمّل أسماء التجمعات السكانية عند فتح الناحية. <a href="https://opensyria.org/datasets/geography" target="_blank" rel="noopener">مصدر البيانات وتفاصيلها</a>.</p>
@@ -356,6 +366,12 @@ nav.addEventListener("click",e=>{if(e.target.closest("a")){nav.classList.remove(
 
 /* Governorate portfolios and locality explorer */
 const govGrid=document.getElementById("governorateGrid"),placeSearch=document.getElementById("placeSearch"),directoryCount=document.getElementById("directoryCount");
+const directorySection=document.getElementById("governorates");
+function openGovernorates(){directorySection.hidden=false;directorySection.scrollIntoView({behavior:"smooth",block:"start"});document.getElementById("openGovernorates")?.setAttribute("aria-expanded","true")}
+function closeGovernorates(){directorySection.hidden=true;document.getElementById("openGovernorates")?.setAttribute("aria-expanded","false");document.getElementById("openGovernorates")?.focus()}
+document.getElementById("openGovernorates").addEventListener("click",openGovernorates);
+document.getElementById("closeGovernorates").addEventListener("click",closeGovernorates);
+
 let adminData=null;
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function localityArray(payload){if(Array.isArray(payload))return payload;if(Array.isArray(payload?.data))return payload.data;if(Array.isArray(payload?.items))return payload.items;if(Array.isArray(payload?.results))return payload.results;if(Array.isArray(payload?.data?.items))return payload.data.items;return []}
