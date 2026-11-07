@@ -509,14 +509,14 @@ function renderSectorImages(){
  document.querySelectorAll(".sector").forEach(section=>{
   const n=section.id.replace("sector-",""),gallery=section.querySelector(".sector-gallery"),tools=section.querySelector(".sector-owner-tools");
   if(!gallery)return;
-  const stored=Array.isArray(sectorImages[n])?sectorImages[n]:[];const removed=sectorImages._removed?.[n]||[];gallery.querySelectorAll(".project-card:not(.custom-sector-photo)").forEach(card=>{const src=card.dataset.src||"";card.hidden=removed.includes(src);if(ownerMode&&!card.querySelector(".owner-remove-photo")){const del=document.createElement("button");del.type="button";del.className="owner-remove-photo";del.textContent="إزالة الصورة";del.addEventListener("click",async ev=>{ev.stopPropagation();if(!confirm("إزالة هذه الصورة من حقيبة المحفظة؟"))return;sectorImages._removed=sectorImages._removed||{};sectorImages._removed[n]=[...(sectorImages._removed[n]||[]),src];try{await saveProjectRecords();renderSectorImages()}catch(err){alert(err.message)}});card.append(del)}});
+  const stored=Array.isArray(sectorImages[n])?sectorImages[n]:[];const removed=sectorImages._removed?.[n]||[];gallery.querySelectorAll(".project-card:not(.custom-sector-photo)").forEach(card=>{const src=card.dataset.src||"";card.hidden=removed.includes(src);if(ownerMode&&!card.querySelector(".owner-remove-photo")){const del=document.createElement("span");del.className="owner-remove-photo";del.textContent="إزالة الصورة";del.addEventListener("click",async ev=>{ev.stopPropagation();if(!confirm("إزالة هذه الصورة من حقيبة المحفظة؟"))return;sectorImages._removed=sectorImages._removed||{};sectorImages._removed[n]=[...(sectorImages._removed[n]||[]),src];try{await saveProjectRecords();renderSectorImages()}catch(err){alert(err.message)}});card.append(del)}});
   gallery.querySelectorAll(".custom-sector-photo").forEach(x=>x.remove());
   stored.forEach((file,index)=>{
    const card=document.createElement("button");card.type="button";card.className="project-card custom-sector-photo";card.dataset.src=file.data;card.dataset.caption=file.caption||file.name||"صورة مشروع";
    const img=document.createElement("img");img.src=file.data;img.alt=card.dataset.caption;img.loading="lazy";
    const label=document.createElement("span");label.textContent=card.dataset.caption;
    const hint=document.createElement("i");hint.textContent="عرض الصورة ↗";card.append(img,label,hint);
-   if(ownerMode){const del=document.createElement("button");del.type="button";del.className="owner-remove-photo";del.textContent="حذف الصورة";del.addEventListener("click",async ev=>{ev.stopPropagation();if(!confirm("حذف هذه الصورة من حقيبة المحفظة؟"))return;sectorImages[n].splice(index,1);try{await saveProjectRecords();renderSectorImages()}catch(err){alert(err.message)}});card.append(del)}
+   if(ownerMode){const del=document.createElement("span");del.className="owner-remove-photo";del.textContent="حذف الصورة";del.addEventListener("click",async ev=>{ev.stopPropagation();if(!confirm("حذف هذه الصورة من حقيبة المحفظة؟"))return;sectorImages[n].splice(index,1);try{await saveProjectRecords();renderSectorImages()}catch(err){alert(err.message)}});card.append(del)}
    gallery.append(card);
   });
   if(tools)tools.hidden=!ownerMode;
