@@ -12,7 +12,7 @@
 .site-header{position:sticky;top:0;z-index:30;background:rgba(7,27,37,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 .nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:700;color:var(--gold2)}
-.brand-mark{width:46px;height:46px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:24px;background:linear-gradient(145deg,#1b4b5a,#0b2633);box-shadow:0 0 0 5px #d8b56b12}
+.brand-mark{width:46px;height:46px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:24px;background:linear-gradient(145deg,#1b4b5a,#0b2633);box-shadow:0 0 0 5px #d8b56b12}.brand-mark{padding:0;cursor:pointer;appearance:none;-webkit-appearance:none;transition:transform .18s,box-shadow .18s}.brand-mark:hover,.brand-mark:focus-visible{transform:scale(1.06);box-shadow:0 0 0 6px #d8b56b25,0 0 18px #d8b56b44;outline:2px solid var(--gold2);outline-offset:3px}.brand-title{display:block;color:var(--gold2);text-decoration:none;font-size:17px;font-weight:700}.brand-title small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;font-weight:400}
 .brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;font-weight:400}
 .nav-links{display:flex;align-items:center;gap:24px;font-size:13px;color:#e5e9e5}
 .nav-links a{padding:8px 0;transition:color .2s}.nav-links a:hover{color:var(--gold2)}
@@ -302,7 +302,7 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
 </style></head>
 <body>
 <header class="site-header"><div class="container nav">
-<a class="brand" href="#home"><span class="brand-mark">آ</span><span>آفاق سوريا<small>AFAQ SYRIA · INVESTMENT & DEVELOPMENT</small></span></a>
+<div class="brand"><button type="button" class="brand-mark" id="brandHomeButton" aria-label="العودة إلى الصفحة الرئيسية">آ</button><a href="#home" class="brand-title">آفاق سوريا<small>AFAQ SYRIA · INVESTMENT & DEVELOPMENT</small></a></div>
 <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">القائمة ☰</button>
 <nav class="nav-links" id="navLinks">
 <a href="#home">الرئيسية</a>
@@ -483,6 +483,8 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
 <script>
 (()=>{"use strict";
 const menu=document.getElementById("menuToggle"),nav=document.getElementById("navLinks");
+const brandHomeButton=document.getElementById("brandHomeButton");
+brandHomeButton.addEventListener("click",()=>{document.getElementById("home").scrollIntoView({behavior:"smooth",block:"start"});history.replaceState(null,"",location.pathname+location.search)});
 menu.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",String(open))});
 nav.addEventListener("click",e=>{if(e.target.closest("a")&&!e.target.closest(".workspace-menu")){nav.classList.remove("open");menu.setAttribute("aria-expanded","false")}});
 
