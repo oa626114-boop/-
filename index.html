@@ -300,6 +300,18 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
 .workflow-button{display:block;width:100%;text-align:right;color:inherit;font:inherit;cursor:pointer;transition:border-color .2s,transform .2s}.workflow-button:hover,.workflow-button:focus-visible{border-color:var(--gold);transform:translateY(-2px);outline:2px solid #d8b56b55}.workflow-button small{display:block;margin-top:9px;color:var(--gold2);font-size:10px}
 .about-link{display:block;text-decoration:none;cursor:pointer;transition:border-color .2s,background .2s,transform .2s}.about-link:hover,.about-link:focus-visible{border-color:var(--gold);background:#d8b56b12;transform:translateY(-2px)}.about-link span{display:block;margin-top:8px;color:var(--gold2);font-size:10px}.workflow-button{appearance:none;border:1px solid var(--line);background:#174454;border-radius:11px;padding:14px;text-align:right}.workflow-button:active,.about-link:active{transform:scale(.985)}
 
+
+/* The gold circular brand mark opens the full About dialog */
+.about-modal{position:fixed!important;inset:0!important;z-index:80!important;width:100%!important;height:100vh;height:100dvh!important;max-width:none!important;margin:0!important;padding:78px clamp(16px,4vw,46px) 30px!important;display:block!important;overflow-y:auto!important;overscroll-behavior:contain;background:rgba(4,19,27,.97)!important;border:0!important;border-radius:0!important;backdrop-filter:blur(14px);box-shadow:none!important}
+.about-modal[hidden]{display:none!important}
+.about-modal .about-main,.about-modal .about-points{width:min(100%,1040px);margin-inline:auto}
+.about-modal .about-main{padding:24px clamp(16px,3vw,34px);border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,#123c4b,#0b2b38)}
+.about-modal .about-points{margin-top:16px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.about-modal-close{position:fixed;z-index:2;top:14px;right:16px;display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid var(--gold);border-radius:999px;background:#0b2633;color:var(--gold2);font:inherit;font-size:14px;cursor:pointer;box-shadow:0 5px 18px #0005}
+.about-modal-close:first-letter{font-size:22px}
+.about-modal-close:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+body.about-open{overflow:hidden}
+@media(max-width:650px){.about-modal{padding:70px 12px 22px!important}.about-modal .about-main{padding:18px 15px}.about-modal .about-main h2{font-size:25px;line-height:1.55}.about-modal .about-main p,.about-modal .about-goals li{font-size:13px;line-height:2}.about-modal .about-points{grid-template-columns:1fr}.about-modal-close{top:10px;right:12px}}
 /* Unified, accessible service accordion and expanded company profile */
 .service-accordion{display:grid;gap:13px;padding:18px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#123b49,#0b2b38);box-shadow:0 14px 35px #0002}
 .service-accordion-item{padding:0;overflow:hidden;border-color:#d8b56b55;background:linear-gradient(145deg,#174453,#103440)}
@@ -498,10 +510,10 @@ body.owner-mode .sector-gallery .project-card .owner-remove-photo{display:block}
  <div class="notice-strip">حماية الأطراف: لا تُرسل أموالاً أو وثائق حساسة عبر نموذج البريد هذا. لا توجد حالياً بوابة دفع أو توقيع إلكتروني أو حسابات ملفات آمنة مفعّلة ضمن هذا القسم.</div>
 </section>
 
-<section class="container about about-expanded" id="about">
+<section class="container about about-expanded about-modal" id="about" hidden role="dialog" aria-modal="true" aria-labelledby="aboutTitle">\n <button type="button" class="about-modal-close" id="closeAboutPanel" aria-label="إغلاق نافذة تعريف الموقع">× <span>إغلاق</span></button>
  <div class="about-main">
   <span class="eyebrow">WHO WE ARE · AFAQ SYRIA</span>
-  <h2>آفاق سوريا – رؤية للتطوير والاستثمار وإعادة الإعمار</h2>
+  <h2 id="aboutTitle">آفاق سوريا – رؤية للتطوير والاستثمار وإعادة الإعمار</h2>
   <p>آفاق سوريا منصة استثمارية وتنموية تهدف إلى إبراز الفرص والمشاريع والمبادرات التي يمكن أن تسهم في دعم التعافي الاقتصادي والتنمية المستدامة في سوريا. نعمل على بناء مساحة تجمع أصحاب المشاريع والمستثمرين والشركات والخبراء وأصحاب الكفاءات، وتساعدهم على التعارف وتبادل المعلومات واستكشاف فرص التعاون.</p>
   <p>ننظر إلى إعادة الإعمار بوصفها عملية شاملة لا تقتصر على ترميم المباني وإنشاء الطرق والمرافق، بل تشمل أيضاً تحديث أساليب العمل، ونقل المعرفة، وتنمية المهارات، والاستثمار في الإنسان والعقل والفكر، وتطوير المؤسسات والقطاعات الإنتاجية.</p>
   <h3>رؤيتنا</h3><p>المساهمة في بناء بيئة سورية أكثر قدرة على جذب الاستثمار وتحويل الأفكار والخبرات إلى مبادرات ومشاريع قابلة للدراسة والتنفيذ، ضمن شراكات مسؤولة وشفافة.</p>
@@ -562,6 +574,8 @@ document.addEventListener("click",event=>{
  const link=event.target.closest('a[href^="#"]');
  if(!link)return;
  const id=decodeURIComponent(link.getAttribute("href").slice(1));
+ if(id==="about"){event.preventDefault();openAboutPanel();return}
+ if(!aboutPanel.hidden&&id!=="about")closeAboutPanel();
  const panelId=id==="contracts"?"budget":id;
  const panel=servicePanels.find(item=>item.id===panelId);
  if(panel){
@@ -573,7 +587,28 @@ document.addEventListener("click",event=>{
 });
 
 const brandHomeButton=document.getElementById("brandHomeButton");
-brandHomeButton.addEventListener("click",()=>{document.getElementById("home").scrollIntoView({behavior:"smooth",block:"start"});history.replaceState(null,"",location.pathname+location.search)});
+const aboutPanel=document.getElementById("about");
+const closeAboutButton=document.getElementById("closeAboutPanel");
+let aboutReturnFocus=null;
+function openAboutPanel(){
+ aboutReturnFocus=document.activeElement;
+ aboutPanel.hidden=false;
+ document.body.classList.add("about-open");
+ closeAboutButton.focus();
+}
+function closeAboutPanel(){
+ aboutPanel.hidden=true;
+ document.body.classList.remove("about-open");
+ if(aboutReturnFocus&&typeof aboutReturnFocus.focus==="function")aboutReturnFocus.focus();
+}
+brandHomeButton.title="تعريف عن الموقع";
+brandHomeButton.setAttribute("aria-label","تعريف عن موقع آفاق سوريا");
+brandHomeButton.setAttribute("aria-haspopup","dialog");
+brandHomeButton.setAttribute("aria-controls","about");
+brandHomeButton.addEventListener("click",openAboutPanel);
+closeAboutButton.addEventListener("click",closeAboutPanel);
+aboutPanel.addEventListener("click",event=>{if(event.target===aboutPanel)closeAboutPanel()});
+document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!aboutPanel.hidden)closeAboutPanel()});
 menu.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",String(open))});
 nav.addEventListener("click",e=>{if(e.target.closest("a")&&!e.target.closest(".workspace-menu")){nav.classList.remove("open");menu.setAttribute("aria-expanded","false")}});
 
